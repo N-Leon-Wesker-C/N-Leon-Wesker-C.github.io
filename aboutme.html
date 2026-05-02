@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #000810; color: #e0f4ff; font-family: 'Rajdhani', sans-serif; overflow-x: hidden; min-height: 100vh; }
+  :root { --blue-glow: #00bfff; --blue-mid: #0077aa; --blue-deep: #003355; --accent: #00e5ff; --text-main: #cce8f4; --text-muted: #5a8fa8; --gold: #c8a84b; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 18px 48px; background: linear-gradient(to bottom, rgba(0,8,16,0.95), transparent); border-bottom: 1px solid rgba(0,191,255,0.1); }
+  .nav-logo { font-family: 'Cinzel', serif; 
+  font-size: 13px; 
+  letter-spacing: 4px; 
+  color: var(--accent); 
+  text-transform: uppercase; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { font-size: 12px; letter-spacing: 3px; color: var(--text-muted); text-decoration: none; text-transform: uppercase; font-weight: 600; transition: color .2s; }
+  .nav-links a:hover { color: var(--accent); }
+  .hero { position: relative; min-height: 40vh; display: flex; align-items: center; justify-content: center; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 50% 40%, rgba(0,100,180,0.18) 0%, transparent 70%), #000810; }
+  .hero-content { position: relative; z-index: 2; text-align: center; padding: 60px 24px; max-width: 900px; }
+  .hero-eyebrow { font-size: 11px; letter-spacing: 8px; color: var(--accent); text-transform: uppercase; margin-bottom: 28px; opacity: 0.8; }
+  .hero-title { font-family: 'Cinzel', serif; font-size: clamp(32px, 6vw, 56px); font-weight: 900; color: #fff; letter-spacing: -1px; text-shadow: 0 0 40px rgba(0,191,255,0.3); }
+  .content { max-width: 800px; margin: 0 auto; padding: 40px 24px 100px; line-height: 1.8; font-size: 16px; color: var(--text-main); }
+  .content h2 { margin: 30px 0 15px; color: var(--accent); }
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity .6s, transform .6s; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+  footer { padding: 40px 48px; border-top: 1px solid rgba(0,100,160,0.2); display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 5px; color: var(--text-muted); }
+  .footer-copy { font-size: 11px; color: var(--text-muted); }
+</style>
+</head>
+<body>
+
+<!-- <nav>
+  <div class="nav-logo">Persona 3 Reload</div>
+  <div class="nav-links">
+    <a href="index.html#resume">履历</a>
+    <a href="index.html#direction">研究方向</a>
+    <a href="index.html#publication">出版物</a>
+    <a href="index.html#character">文字</a>
+  </div>
+</nav> -->
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content fade-in">
+    <h1 class="hero-title">关于聂畅</h1>
+  </div>
+</section>
+
+<div class="content fade-in">
+  <h2>我是谁</h2>
+  <p>你好！我是聂畅，2005年出生在湖南娄底，在娄底生活了18年，在北京读了三年的书。
+    在2011年到2012年，我就读于长沙华夏实验学校，2012年以后在娄底市第三小学完成了小学学业。
+    之后在娄底市第三中学完成了6年的中学学业。2023年以后，我就读于北京交通大学
+    数学与统计学院数据科学专业，预计27年入学中科院软件研究所攻读硕士学位。</p>
+  <h2>我的兴趣研究方向</h2>
+  <p>我在北京交通大学数学与统计学院主修数据科学专业，对于机器学习和数据挖掘方向有很大的兴趣。同时，我也对金融领域中的数据科学技术有一定的研究。
+    我今后将要继续研究的方向是计算机体系结构和资源解耦方向，专注于计算机基础架构的设计和资源池化技术，对AI infra领域也有一定的研究</p>
+  <h2>兴趣爱好</h2>
+  <p>我从小学6岁开始学习钢琴，中间断断续续摸了十多年。我最喜欢的作曲家是奥地利音乐家
+    <a href="https://zh.wikipedia.org/zh-cn/%E5%BC%97%E6%9C%97%E8%8C%A8%C2%B7%E8%88%92%E4%BC%AF%E7%89%B9">弗朗茨·舒伯特</a>
+    和俄国作曲家<a href="https://zh.wikipedia.org/zh-cn/%E8%B0%A2%E5%B0%94%E7%9B%96%C2%B7%E6%8B%89%E8%B5%AB%E7%8E%9B%E5%B0%BC%E8%AF%BA%E5%A4%AB">
+    谢尔盖·拉赫玛尼诺夫</a>。现在我也经常去北京的国家大剧院听音乐会。我从小喜欢历史，从小学开始看历史书和人物传记，这个爱好也从小时候一直坚持
+    到了现在，尤其对中世纪欧洲历史感兴趣。同时，我也喜欢羽毛球和游泳这两项运动(羽毛球玩的不是很好bushi)。小时候我特别喜欢完乐高，但是现在不经常玩了，
+    改成在服务器上<a href="https://www.usenix.org/conference/osdi18/presentation/shan">LegoOS</a>(悲)。我也很喜欢看电影，从看的第一部电影星球大战4到
+    2026年北影节的年轻气盛，我看过了很多电影，在初高中的时候年年都会关注当年的奥斯卡。</p>
+</div>
+
+<div style="margin-bottom: 20px; font-size: 16px; color: #333; line-height: 1.6;">
+  如果你对我的研究方向感兴趣，或者是和我有相似的兴趣爱好，欢迎你希望通过下面的方式和我联系
+</div>
+
+<div style="display:flex; gap:20px; align-items:center; font-size:18px;">
+  
+  <!-- LinkedIn -->
+  <a href="https://www.linkedin.com/in/chang-nie-2822652b6/" target="_blank" style="text-decoration:none; color:#333;">LinkedIn</a>
+  
+  <!-- GitHub -->
+  <a href="https://github.com/N-Leon-Wesker-C" target="_blank" style="text-decoration:none; color:#333;">GitHub</a>
+
+  <!-- X -->
+  <a href="https://x.com/niechangnie3" target="_blank" style="text-decoration:none; color:#000810;">X</a>
+
+  <!-- 邮箱 -->
+  <a href="mailto:2367421497@qq.com" class="btn-secondary">发邮件</a>
+</div>
+
+<footer>
+  <div class="footer-logo">Personal Academic</div>
+  <div class="footer-copy">© 2025 All rights reserved.</div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1});
+  document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
