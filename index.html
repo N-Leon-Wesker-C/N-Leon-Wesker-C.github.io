@@ -276,6 +276,9 @@
   .fade-in.visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
+
+
+
 <body>
 
 <!-- 导航栏 -->
@@ -359,6 +362,82 @@
   <div class="divider-diamond"></div>
   <div class="divider-line"></div>
 </div>
+
+
+<!-- 听音乐把 -->
+<style>
+/* 旋转唱片样式 */
+.music-wrap {
+  text-align: center;
+  margin: 40px 0;
+}
+.disc {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: #333;
+  margin: 0 auto 20px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+/* 中间小圆 */
+.disc::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+/* 旋转动画 */
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.rotate {
+  animation: rotate 10s linear infinite;
+}
+.pause {
+  animation-play-state: paused;
+}
+/* 播放器样式缩小居中 */
+audio {
+  width: 280px;
+}
+</style>
+
+<!-- 唱片封面 + 播放器 -->
+<div class="music-wrap">
+  <div class="disc" id="disk">
+    <!-- 这里放你的歌曲封面图片 -->
+    <img src="music.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+  </div>
+
+  <audio controls autoplay loop id="audio">
+    <source src="ColorYourNight.mp3" type="audio/mpeg">
+  
+</div>
+
+<script>
+const audio = document.getElementById('audio');
+const disk = document.getElementById('disk');
+
+// 默认开始旋转
+disk.classList.add('rotate');
+
+// 播放/暂停 控制旋转
+audio.addEventListener('play', ()=>{
+  disk.classList.remove('pause');
+});
+audio.addEventListener('pause', ()=>{
+  disk.classList.add('pause');
+});
+</script>
+
 
 <!-- FEATURES -->
 <section id="direction",section class="features fade-in">
@@ -498,5 +577,6 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 </script>
+
 </body>
 </html>
