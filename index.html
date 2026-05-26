@@ -1,295 +1,304 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chang Nie · Systems Researcher</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  :root {
+    --bg: #ffffff;
+    --bg-secondary: #f7f8fa;
+    --bg-card: #ffffff;
+    --border: #e2e6ea;
+    --border-accent: #c8d6e5;
+    --text-primary: #0d1117;
+    --text-secondary: #4a5568;
+    --text-muted: #8896a5;
+    --accent: #0066cc;
+    --accent-light: #e8f0fe;
+    --accent-mid: #4a90d9;
+    --gold: #b8860b;
+    --code-bg: #f0f4f8;
+  }
+
   body {
-    background: #000810;
-    color: #e0f4ff;
-    font-family: 'Rajdhani', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
     overflow-x: hidden;
     min-height: 100vh;
+    line-height: 1.6;
   }
 
-  :root {
-    --blue-glow: #00bfff;
-    --blue-mid: #0077aa;
-    --blue-deep: #003355;
-    --accent: #00e5ff;
-    --text-main: #cce8f4;
-    --text-muted: #5a8fa8;
-    --gold: #c8a84b;
-  }
-
-  /* ─── NAV ─── */
+  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 48px;
-    background: linear-gradient(to bottom, rgba(0,8,16,0.95), transparent);
-    border-bottom: 1px solid rgba(0,191,255,0.1);
+    padding: 16px 64px;
+    background: rgba(255,255,255,0.95);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(8px);
   }
   .nav-logo {
     font-family: 'Cinzel', serif;
-    font-size: 13px; letter-spacing: 4px; color: var(--accent);
-    text-transform: uppercase;
+    font-size: 14px; letter-spacing: 3px; color: var(--text-primary);
+    text-transform: uppercase; font-weight: 700;
   }
-  .nav-links { display: flex; gap: 32px; }
+  .nav-links { display: flex; gap: 36px; }
   .nav-links a {
-    font-size: 12px; letter-spacing: 3px; color: var(--text-muted);
-    text-decoration: none; text-transform: uppercase; font-weight: 600;
+    font-size: 13px; letter-spacing: 0.5px; color: var(--text-secondary);
+    text-decoration: none; font-weight: 500;
     transition: color .2s;
   }
   .nav-links a:hover { color: var(--accent); }
 
-  /* ─── HERO ─── */
+  /* HERO */
   .hero {
     position: relative; min-height: 100vh;
     display: flex; align-items: center; justify-content: center;
     overflow: hidden;
+    background: var(--bg);
   }
-
   .hero-bg {
     position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 60% 80% at 50% 40%, rgba(0,100,180,0.18) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 60% at 70% 20%, rgba(0,191,255,0.07) 0%, transparent 50%),
-      #000810;
+      radial-gradient(ellipse 60% 70% at 50% 40%, rgba(0,102,204,0.05) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 50% at 80% 20%, rgba(74,144,217,0.04) 0%, transparent 50%);
   }
 
-  /* Clock geometry */
+  /* geometric ring — lighter version */
   .clock-ring {
     position: absolute; top: 50%; left: 50%;
     transform: translate(-50%, -55%);
-    width: 520px; height: 520px;
+    width: 560px; height: 560px;
+    opacity: 0.5;
   }
 
   .hero-content {
     position: relative; z-index: 2;
     text-align: center; padding: 140px 24px 80px;
-    max-width: 900px;
+    max-width: 860px;
   }
-
   .hero-eyebrow {
-    font-size: 11px; letter-spacing: 8px; color: var(--accent);
-    text-transform: uppercase; margin-bottom: 28px; opacity: 0.8;
+    font-size: 11px; letter-spacing: 6px; color: var(--accent);
+    text-transform: uppercase; margin-bottom: 28px;
+    font-family: 'JetBrains Mono', monospace;
   }
-
   .hero-title {
     font-family: 'Cinzel', serif;
-    font-size: clamp(52px, 9vw, 96px);
+    font-size: clamp(48px, 8vw, 88px);
     font-weight: 900; line-height: 0.95;
-    color: #fff;
-    letter-spacing: -1px;
-    margin-bottom: 8px;
-    text-shadow: 0 0 40px rgba(0,191,255,0.3), 0 0 80px rgba(0,100,180,0.2);
+    color: var(--text-primary);
+    letter-spacing: -1px; margin-bottom: 12px;
   }
-
   .hero-title span { color: var(--accent); }
-
-  .hero-subtitle-latin {
-    font-family: 'Cinzel', serif;
-    font-size: 13px; letter-spacing: 6px; color: var(--gold);
-    text-transform: uppercase; margin-bottom: 40px; opacity: 0.9;
+  .hero-subtitle {
+    font-size: 13px; letter-spacing: 5px; color: var(--gold);
+    text-transform: uppercase; margin-bottom: 36px;
+    font-family: 'JetBrains Mono', monospace;
   }
-
   .hero-copy {
-    font-size: 15px; line-height: 1.9; color: var(--text-muted);
-    max-width: 480px; margin: 0 auto 48px; letter-spacing: 1px;
+    font-size: 16px; line-height: 1.85; color: var(--text-secondary);
+    max-width: 540px; margin: 0 auto 48px; font-weight: 400;
   }
-
   .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-
   .btn-primary {
-    padding: 14px 36px; border: 1px solid var(--accent);
-    background: rgba(0,229,255,0.08); color: var(--accent);
-    font-family: 'Rajdhani', sans-serif; font-size: 12px;
-    letter-spacing: 4px; text-transform: uppercase; font-weight: 700;
-    cursor: pointer; transition: all .2s;
-    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    padding: 12px 32px;
+    background: var(--accent); color: #fff;
+    font-size: 13px; letter-spacing: 1px; font-weight: 500;
+    text-decoration: none; display: inline-block;
+    border: 1px solid var(--accent);
+    transition: all .2s;
   }
-  .btn-primary:hover { background: rgba(0,229,255,0.18); }
-
+  .btn-primary:hover { background: #0052a3; border-color: #0052a3; }
   .btn-secondary {
-    padding: 14px 36px; border: 1px solid rgba(0,119,170,0.5);
-    background: transparent; color: var(--text-muted);
-    font-family: 'Rajdhani', sans-serif; font-size: 12px;
-    letter-spacing: 4px; text-transform: uppercase; font-weight: 700;
-    cursor: pointer; transition: all .2s;
-    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    padding: 12px 32px;
+    background: transparent; color: var(--text-secondary);
+    font-size: 13px; letter-spacing: 1px; font-weight: 500;
+    text-decoration: none; display: inline-block;
+    border: 1px solid var(--border-accent);
+    transition: all .2s;
   }
-  .btn-secondary:hover { color: var(--text-main); border-color: var(--blue-mid); }
+  .btn-secondary:hover { color: var(--accent); border-color: var(--accent); }
 
-  /* ─── DIVIDER ─── */
+  /* DIVIDER */
   .divider {
     display: flex; align-items: center; gap: 16px;
-    padding: 0 48px; margin: 0 0 80px;
-    opacity: 0.4;
+    padding: 0 64px; margin: 0 0 80px; opacity: 0.5;
   }
-  .divider-line { flex: 1; height: 1px; background: var(--blue-mid); }
-  .divider-diamond {
-    width: 6px; height: 6px;
-    background: var(--accent);
-    transform: rotate(45deg);
+  .divider-line { flex: 1; height: 1px; background: var(--border); }
+  .divider-diamond { width: 5px; height: 5px; background: var(--accent); transform: rotate(45deg); }
+
+  /* ABOUT */
+  .about-section {
+    padding: 80px 64px; max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 280px 1fr; gap: 80px; align-items: start;
   }
+  .about-label {
+    font-size: 10px; letter-spacing: 5px; color: var(--accent);
+    text-transform: uppercase; margin-bottom: 16px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .about-name {
+    font-family: 'Cinzel', serif; font-size: 24px; font-weight: 700;
+    color: var(--text-primary); letter-spacing: 1px; margin-bottom: 6px;
+  }
+  .about-role {
+    font-size: 12px; letter-spacing: 2px; color: var(--text-muted);
+    text-transform: uppercase; margin-bottom: 28px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .about-links { display: flex; flex-direction: column; gap: 10px; }
+  .about-link {
+    font-size: 13px; color: var(--text-secondary);
+    text-decoration: none; transition: color .2s;
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .about-link:hover { color: var(--accent); }
+  .about-link::before { content: '→'; color: var(--accent); font-size: 12px; }
+  .about-bio { font-size: 15px; line-height: 1.9; color: var(--text-secondary); }
+  .about-bio p { margin-bottom: 16px; }
+  .about-bio strong { color: var(--text-primary); font-weight: 600; }
 
-  /* ─── FEATURES ─── */
-  .features { padding: 80px 48px; max-width: 1100px; margin: 0 auto; }
-
-  .section-header { text-align: center; margin-bottom: 60px; }
+  /* SECTION COMMON */
+  .section-wrap { padding: 80px 64px; max-width: 1100px; margin: 0 auto; }
+  .section-bg { background: var(--bg-secondary); }
+  .section-header { margin-bottom: 48px; }
   .section-label {
-    font-size: 10px; letter-spacing: 6px; color: var(--accent);
-    text-transform: uppercase; margin-bottom: 12px;
+    font-size: 10px; letter-spacing: 5px; color: var(--accent);
+    text-transform: uppercase; margin-bottom: 10px;
+    font-family: 'JetBrains Mono', monospace;
   }
   .section-title {
     font-family: 'Cinzel', serif;
-    font-size: clamp(24px, 4vw, 36px); font-weight: 700;
-    color: #fff; letter-spacing: 2px;
+    font-size: clamp(22px, 3vw, 30px); font-weight: 700;
+    color: var(--text-primary); letter-spacing: 1px;
   }
 
+  /* RESEARCH CARDS */
   .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 2px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border);
   }
-
   .feature-card {
-    padding: 36px 28px;
-    background: rgba(0,20,40,0.6);
-    border: 1px solid rgba(0,100,160,0.2);
+    padding: 32px 28px;
+    background: var(--bg-card);
     position: relative; overflow: hidden;
-    transition: border-color .2s;
+    transition: background .2s;
   }
-  .feature-card:hover { border-color: rgba(0,191,255,0.4); }
+  .feature-card:hover { background: var(--accent-light); }
   .feature-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(to right, transparent, var(--accent), transparent);
-    opacity: 0; transition: opacity .2s;
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--accent); opacity: 0; transition: opacity .2s;
   }
   .feature-card:hover::before { opacity: 1; }
-
   .feature-number {
-    font-family: 'Cinzel', serif;
-    font-size: 42px; font-weight: 900;
-    color: rgba(0,191,255,0.1); margin-bottom: 16px; line-height: 1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--accent); margin-bottom: 14px;
+    letter-spacing: 2px; font-weight: 500;
   }
   .feature-title {
-    font-size: 14px; letter-spacing: 3px; color: var(--text-main);
-    text-transform: uppercase; font-weight: 700; margin-bottom: 12px;
+    font-size: 14px; color: var(--text-primary);
+    font-weight: 600; margin-bottom: 10px; letter-spacing: 0.3px;
   }
-  .feature-desc {
-    font-size: 14px; color: var(--text-muted);
-    line-height: 1.8; letter-spacing: 0.5px;
-  }
+  .feature-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.8; }
 
-  /* ─── PERSONAS ─── */
-  .personas { padding: 80px 48px; background: rgba(0,15,30,0.5); }
-  .personas-inner { max-width: 1100px; margin: 0 auto; }
+  /* PROJECT CARDS */
+  .project-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .project-card {
+    padding: 28px 32px;
+    background: var(--bg-card);
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 24px; align-items: center;
+    transition: background .2s; text-decoration: none;
+  }
+  .project-card:hover { background: var(--accent-light); }
+  .project-tag {
+    font-size: 10px; letter-spacing: 3px; color: var(--accent);
+    text-transform: uppercase; margin-bottom: 6px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .project-name {
+    font-size: 16px; color: var(--text-primary);
+    font-weight: 600; margin-bottom: 8px;
+  }
+  .project-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 14px; }
+  .project-tech { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tech-badge {
+    font-size: 10px; letter-spacing: 1px; color: var(--accent);
+    background: var(--accent-light);
+    border: 1px solid rgba(0,102,204,0.2);
+    padding: 3px 10px; text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .project-arrow { font-size: 18px; color: var(--border-accent); transition: color .2s; }
+  .project-card:hover .project-arrow { color: var(--accent); }
 
-  .persona-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 2px; margin-top: 48px;
-  }
-
-  .persona-card {
-    aspect-ratio: 3/4;
-    background: rgba(0,20,40,0.8);
-    border: 1px solid rgba(0,100,160,0.2);
-    display: flex; flex-direction: column;
-    justify-content: flex-end; padding: 20px;
-    cursor: pointer; transition: all .2s; position: relative; overflow: hidden;
-  }
-  .persona-card::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(0,20,40,0.95) 0%, transparent 60%);
-  }
-  .persona-card:hover { border-color: rgba(0,191,255,0.5); transform: translateY(-4px); }
-
-  .persona-arcana {
-    font-size: 10px; letter-spacing: 4px; color: var(--accent);
-    text-transform: uppercase; margin-bottom: 4px;
-    position: relative; z-index: 1;
-  }
-  .persona-name {
-    font-family: 'Cinzel', serif;
-    font-size: 15px; color: #fff; font-weight: 700;
-    position: relative; z-index: 1; letter-spacing: 1px;
-  }
-  .persona-role {
-    font-size: 11px; color: var(--text-muted);
-    position: relative; z-index: 1; letter-spacing: 1px; margin-top: 2px;
-  }
-
-  /* persona bg accent colors */
-  .pc-blue { background: linear-gradient(160deg, rgba(0,40,80,0.9), rgba(0,10,20,0.95)); }
-  .pc-red { background: linear-gradient(160deg, rgba(60,0,20,0.9), rgba(0,10,20,0.95)); }
-  .pc-green { background: linear-gradient(160deg, rgba(0,40,20,0.9), rgba(0,10,20,0.95)); }
-  .pc-gold { background: linear-gradient(160deg, rgba(50,35,0,0.9), rgba(0,10,20,0.95)); }
-  .pc-purple { background: linear-gradient(160deg, rgba(30,0,60,0.9), rgba(0,10,20,0.95)); }
-  .pc-teal { background: linear-gradient(160deg, rgba(0,50,50,0.9), rgba(0,10,20,0.95)); }
-
-  /* ─── QUOTE ─── */
+  /* QUOTE */
   .quote-section {
-    padding: 100px 48px; text-align: center;
-    position: relative; overflow: hidden;
-  }
-  .quote-bg {
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(0,80,150,0.12), transparent);
+    padding: 100px 64px; text-align: center;
+    background: var(--text-primary); position: relative;
   }
   .quote-text {
     font-family: 'Cinzel', serif;
-    font-size: clamp(18px, 3.5vw, 30px);
-    color: rgba(255,255,255,0.7); line-height: 1.7;
-    max-width: 700px; margin: 0 auto 24px;
-    position: relative; z-index: 1;
-    letter-spacing: 2px;
+    font-size: clamp(15px, 2.5vw, 22px);
+    color: rgba(255,255,255,0.85); line-height: 1.9;
+    max-width: 680px; margin: 0 auto 20px; letter-spacing: 1px;
   }
   .quote-attr {
-    font-size: 11px; letter-spacing: 5px; color: var(--accent);
-    text-transform: uppercase; opacity: 0.6;
-    position: relative; z-index: 1;
+    font-size: 11px; letter-spacing: 4px;
+    color: rgba(0,229,255,0.6);
+    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
   }
 
-  /* ─── FOOTER ─── */
+  /* FOOTER */
   footer {
-    padding: 40px 48px;
-    border-top: 1px solid rgba(0,100,160,0.2);
+    padding: 32px 64px;
+    border-top: 1px solid var(--border);
     display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 16px;
+    flex-wrap: wrap; gap: 12px; background: var(--bg);
   }
   .footer-logo {
     font-family: 'Cinzel', serif; font-size: 11px;
-    letter-spacing: 5px; color: var(--text-muted); text-transform: uppercase;
+    letter-spacing: 3px; color: var(--text-muted); text-transform: uppercase;
   }
-  .footer-copy { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; }
+  .footer-copy { font-size: 12px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
 
-  /* ─── SCROLL FADE IN ─── */
-  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity .6s, transform .6s; }
+  /* FADE IN */
+  .fade-in { opacity: 0; transform: translateY(16px); transition: opacity .5s, transform .5s; }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 14px 24px; }
+    .nav-links { gap: 16px; }
+    .about-section { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
+    .section-wrap { padding: 60px 24px; }
+    .project-card { grid-template-columns: 1fr; }
+    .project-arrow { display: none; }
+    .quote-section { padding: 60px 24px; }
+    footer { padding: 24px; }
+  }
 </style>
 </head>
 
-
-
 <body>
 
-<!-- 导航栏 -->
+<!-- NAV -->
 <nav>
-  <div class="nav-logo">Persona 3 Reload</div>
+  <div class="nav-logo">Chang Nie</div>
   <div class="nav-links">
-    <a href="#resume">履历</a>
-    <a href="#direction">研究方向</a>
-    <a href="#career">事业</a>
-    <a href="#life">生活</a>
-    <a href="publication">出版物</a>
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
   </div>
 </nav>
 
@@ -297,59 +306,46 @@
 <section class="hero">
   <div class="hero-bg"></div>
 
-  <!-- Clock SVG -->
-  <svg class="clock-ring" viewBox="0 0 520 520" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="260" cy="260" r="240" stroke="rgba(0,191,255,0.06)" stroke-width="1"/>
-    <circle cx="260" cy="260" r="210" stroke="rgba(0,191,255,0.08)" stroke-width="0.5"/>
-    <circle cx="260" cy="260" r="180" stroke="rgba(0,191,255,0.12)" stroke-width="1"/>
-
-    <!-- tick marks -->
-    <g stroke="rgba(0,191,255,0.3)" stroke-width="1.5">
-      <line x1="260" y1="22" x2="260" y2="42"/>
-      <line x1="260" y1="478" x2="260" y2="498"/>
-      <line x1="22" y1="260" x2="42" y2="260"/>
-      <line x1="478" y1="260" x2="498" y2="260"/>
+  <svg class="clock-ring" viewBox="0 0 560 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="280" cy="280" r="260" stroke="rgba(0,102,204,0.07)" stroke-width="1"/>
+    <circle cx="280" cy="280" r="230" stroke="rgba(0,102,204,0.05)" stroke-width="0.5"/>
+    <circle cx="280" cy="280" r="195" stroke="rgba(0,102,204,0.09)" stroke-width="1"/>
+    <g stroke="rgba(0,102,204,0.25)" stroke-width="1.5">
+      <line x1="280" y1="22" x2="280" y2="44"/>
+      <line x1="280" y1="516" x2="280" y2="538"/>
+      <line x1="22" y1="280" x2="44" y2="280"/>
+      <line x1="516" y1="280" x2="538" y2="280"/>
     </g>
-    <g stroke="rgba(0,191,255,0.15)" stroke-width="1">
-      <line x1="389" y1="47" x2="382" y2="59"/>
-      <line x1="131" y1="473" x2="138" y2="461"/>
-      <line x1="47" y1="389" x2="59" y2="382"/>
-      <line x1="473" y1="131" x2="461" y2="138"/>
-      <line x1="473" y1="389" x2="461" y2="382"/>
-      <line x1="47" y1="131" x2="59" y2="138"/>
-      <line x1="389" y1="473" x2="382" y2="461"/>
-      <line x1="131" y1="47" x2="138" y2="59"/>
+    <g stroke="rgba(0,102,204,0.12)" stroke-width="1">
+      <line x1="414" y1="52" x2="406" y2="66"/>
+      <line x1="146" y1="494" x2="154" y2="480"/>
+      <line x1="52" y1="414" x2="66" y2="406"/>
+      <line x1="494" y1="146" x2="480" y2="154"/>
+      <line x1="494" y1="414" x2="480" y2="406"/>
+      <line x1="52" y1="146" x2="66" y2="154"/>
+      <line x1="414" y1="494" x2="406" y2="480"/>
+      <line x1="146" y1="52" x2="154" y2="66"/>
     </g>
-
-    <!-- diamond ornaments -->
-    <rect x="256" y="14" width="8" height="8" fill="rgba(0,229,255,0.6)" transform="rotate(45 260 18)"/>
-    <rect x="256" y="494" width="8" height="8" fill="rgba(0,229,255,0.3)" transform="rotate(45 260 498)"/>
-    <rect x="14" y="256" width="8" height="8" fill="rgba(0,229,255,0.3)" transform="rotate(45 18 260)"/>
-    <rect x="494" y="256" width="8" height="8" fill="rgba(0,229,255,0.3)" transform="rotate(45 498 260)"/>
-
-    <!-- inner cross lines -->
-    <line x1="260" y1="80" x2="260" y2="180" stroke="rgba(0,191,255,0.08)" stroke-width="1"/>
-    <line x1="260" y1="340" x2="260" y2="440" stroke="rgba(0,191,255,0.08)" stroke-width="1"/>
-    <line x1="80" y1="260" x2="180" y2="260" stroke="rgba(0,191,255,0.08)" stroke-width="1"/>
-    <line x1="340" y1="260" x2="440" y2="260" stroke="rgba(0,191,255,0.08)" stroke-width="1"/>
-
-    <!-- center dot -->
-    <circle cx="260" cy="260" r="4" fill="rgba(0,229,255,0.5)"/>
-    <circle cx="260" cy="260" r="12" stroke="rgba(0,191,255,0.2)" stroke-width="1" fill="none"/>
+    <rect x="276" y="14" width="8" height="8" fill="rgba(0,102,204,0.4)" transform="rotate(45 280 18)"/>
+    <rect x="276" y="538" width="8" height="8" fill="rgba(0,102,204,0.2)" transform="rotate(45 280 542)"/>
+    <rect x="14" y="276" width="8" height="8" fill="rgba(0,102,204,0.2)" transform="rotate(45 18 280)"/>
+    <rect x="538" y="276" width="8" height="8" fill="rgba(0,102,204,0.2)" transform="rotate(45 542 280)"/>
+    <circle cx="280" cy="280" r="4" fill="rgba(0,102,204,0.4)"/>
+    <circle cx="280" cy="280" r="14" stroke="rgba(0,102,204,0.15)" stroke-width="1" fill="none"/>
   </svg>
 
   <div class="hero-content">
-    <p class="hero-eyebrow">Atlus × Sega &nbsp;·&nbsp; 2024</p>
-    <h1 class="hero-title">PERSONA<br><span>3</span> RELOAD</h1>
-    <p class="hero-subtitle-latin">Memento Mori — Remember, You Will Die.</p>
+    <p class="hero-eyebrow">Beijing Jiaotong University &nbsp;·&nbsp; B.S. Data Science &nbsp;·&nbsp; 2027</p>
+    <h1 class="hero-title">CHANG<br><span>N</span>IE</h1>
+    <p class="hero-subtitle">Systems · AI Infrastructure · Disaggregation</p>
     <p class="hero-copy">
-      Time never waits.<br>
-      It delivers all equally to the same end.<br>
-      You were destined to meet this fate.
+      I build systems at the boundary of operating systems and AI infrastructure.
+      Interested in how disaggregated hardware architectures can reshape
+      the way we serve large-scale AI workloads.
     </p>
     <div class="hero-buttons">
-      <button class="btn-primary" onclick="window.open('aboutme.html','_blank')">about nc</button>
-      <button class="btn-secondary" onclick="window.open('resume.docx','_blank')">CV</button>
+      <a class="btn-primary" href="#about">About Me</a>
+      <a class="btn-secondary" href="resume.pdf" target="_blank">CV (PDF)</a>
     </div>
   </div>
 </section>
@@ -363,218 +359,166 @@
   <div class="divider-line"></div>
 </div>
 
-
-<!-- 听音乐把 -->
-<style>
-/* 旋转唱片样式 */
-.music-wrap {
-  text-align: center;
-  margin: 40px 0;
-}
-.disc {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  background: #333;
-  margin: 0 auto 20px;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
-}
-/* 中间小圆 */
-.disc::after {
-  content: "";
-  width: 20px;
-  height: 20px;
-  background: #fff;
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-/* 旋转动画 */
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-.rotate {
-  animation: rotate 10s linear infinite;
-}
-.pause {
-  animation-play-state: paused;
-}
-/* 播放器样式缩小居中 */
-audio {
-  width: 280px;
-}
-</style>
-
-<!-- 唱片封面 + 播放器 -->
-<div class="music-wrap">
-  <div class="disc" id="disk">
-    <!-- 这里放你的歌曲封面图片 -->
-    <img src="music.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+<!-- ABOUT -->
+<section id="about" class="fade-in" style="padding-bottom: 80px;">
+  <div class="about-section">
+    <div>
+      <p class="about-label">About</p>
+      <p class="about-name">Chang Nie</p>
+      <p class="about-role">PhD Applicant · 2027</p>
+      <div class="about-links">
+        <a class="about-link" href="mailto:23271071@bjtu.edu.cn">23271071@bjtu.edu.cn</a>
+        <a class="about-link" href="https://github.com/N-Leon-Wesker-C" target="_blank">GitHub</a>
+        <a class="about-link" href="resume.pdf" target="_blank">CV (PDF)</a>
+      </div>
+    </div>
+    <div class="about-bio">
+      <p>
+        I am a third-year undergraduate at Beijing Jiaotong University, majoring in Data Science (expected graduation June 2027).
+        My research interest lies at the intersection of <strong>operating systems, distributed systems, and AI infrastructure</strong>.
+      </p>
+      <p>
+        Specifically, I am interested in how <strong>disaggregated hardware architectures</strong> — where CPU, memory, and storage become independent network-attached components — can be leveraged to improve resource utilization and reduce inference latency in large-scale LLM serving systems.
+      </p>
+      <p>
+        I have hands-on experience with <strong>RDMA-based communication</strong>, distributed consensus (Raft), OS kernel development (RISC-V / ByteOS), and LSM-Tree storage engines. I am currently exploring GPU memory management in the context of KV Cache optimization for LLM inference.
+      </p>
+      <p>
+        I am actively seeking <strong>research internship opportunities</strong> and PhD positions for Fall 2028.
+        I was introduced to this research area through reading LegoOS (OSDI '18) and related work on hardware resource disaggregation.
+      </p>
+    </div>
   </div>
+</section>
 
-  <audio controls autoplay loop id="audio">
-    <source src="ColorYourNight.mp3" type="audio/mpeg">
-  
-</div>
-
-<script>
-const audio = document.getElementById('audio');
-const disk = document.getElementById('disk');
-
-// 默认开始旋转
-disk.classList.add('rotate');
-
-// 播放/暂停 控制旋转
-audio.addEventListener('play', ()=>{
-  disk.classList.remove('pause');
-});
-audio.addEventListener('pause', ()=>{
-  disk.classList.add('pause');
-});
-</script>
-
-
-<!-- FEATURES -->
-<section id="direction",section class="features fade-in">
+<!-- RESEARCH -->
+<div class="section-bg">
+<section id="research" class="section-wrap fade-in">
   <div class="section-header">
-    <p class="section-label">RESEARCH DIRECTION</p>
+    <p class="section-label">Research Interests</p>
     <h2 class="section-title">研究方向</h2>
   </div>
   <div class="features-grid">
     <div class="feature-card">
-      <div class="feature-number">01</div>
-      <p class="feature-title">计算机体系结构</p>
-      <p class="feature-desc">是软件与硬件之间的接口，定义了计算机的功能特性、指令集、寄存器组织及存储器模型。</p>
+      <p class="feature-number">01 · HARDWARE</p>
+      <p class="feature-title">Hardware Disaggregation</p>
+      <p class="feature-desc">Separating CPU, memory, and storage into independent network-attached components. How should OS abstractions be redesigned when hardware is no longer co-located? (LegoOS, Splitkernel)</p>
     </div>
     <div class="feature-card">
-      <div class="feature-number">02</div>
-      <p class="feature-title">计算机基础架构</p>
-      <p class="feature-desc">主要基于冯·诺依曼结构，由CPU（运算器、控制器）、存储器、输入设备和输出设备五大核心部件组成。</p>
+      <p class="feature-number">02 · AI SYSTEMS</p>
+      <p class="feature-title">LLM Inference Systems</p>
+      <p class="feature-desc">Disaggregated serving architectures that separate Prefill and Decode stages across machines. KV Cache memory management, cross-node RDMA transfer, and scheduling under SLO constraints. (DistServe, Splitwise, Mooncake)</p>
     </div>
     <div class="feature-card">
-      <div class="feature-number">03</div>
-      <p class="feature-title">资源解耦</p>
-      <p class="feature-desc">把「硬件实体、系统、应用、算力、存储、网络」从绑定死的关系里拆开，各自独立、可以单独调度、复用、替换、扩容，互不强依赖。</p>
+      <p class="feature-number">03 · OS</p>
+      <p class="feature-title">OS for AI Workloads</p>
+      <p class="feature-desc">How should OS-level scheduling, memory management, and I/O subsystems be redesigned to better support AI inference? Bridging classical systems research and modern AI infrastructure.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-number">04</div>
-      <p class="feature-title">云计算</p>
-      <p class="feature-desc">无需拥有和维护物理数据中心，只需为实际使用的资源付费，具有高扩展性、低成本和弹性。</p>
+      <p class="feature-number">04 · STORAGE</p>
+      <p class="feature-title">Distributed Storage</p>
+      <p class="feature-desc">Consistency, fault tolerance, and I/O performance tradeoffs in distributed KV stores. Relevant to persistent KV Cache and checkpoint storage in large-scale training and inference pipelines.</p>
     </div>
-    <div class="feature-card">
-      <div class="feature-number">05</div>
-       <p class="feature-title">分布式系统</p>
-       <p class="feature-desc">将多个独立节点通过网络连接协同工作以解决单机算力瓶颈</p> 
+  </div>
+</section>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects" class="section-wrap fade-in">
+  <div class="section-header">
+    <p class="section-label">Projects</p>
+    <h2 class="section-title">项目经历</h2>
+  </div>
+  <div class="project-list">
+
+    <a href="https://github.com/N-Leon-Wesker-C" target="_blank" class="project-card">
+      <div>
+        <p class="project-tag">OS · RISC-V · Competition</p>
+        <p class="project-name">AIOS — AI-Aware Operating System</p>
+        <p class="project-desc">Extended the ByteOS kernel (RISC-V) with an AI-aware process scheduler. Added PCB fields for AI task identification and dynamic priority boosting; introduced a custom syscall for zero-intrusion task annotation. Validated on QEMU with concurrent AI and general workloads.</p>
+        <div class="project-tech">
+          <span class="tech-badge">ByteOS</span>
+          <span class="tech-badge">RISC-V</span>
+          <span class="tech-badge">C</span>
+          <span class="tech-badge">Process Scheduling</span>
+          <span class="tech-badge">Syscall</span>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+      <div class="project-arrow">→</div>
+    </a>
 
-<!-- PERSONAS / CHARACTERS -->
-<section id="career" class="personas fade-in">
-  <div class="personas-inner">
-    <div class="section-header">
-      <p class="section-label">CAREER</p>
-      <h2 class="section-title">事业</h2>
-    </div>
-    <div class="persona-list">
-      <a href="career/papers.html" target="_blank" class="btn-secondary">
-        <div class="persona-card pc-blue">
-          <p class="persona-arcana">The Fool</p>
-          <p class="persona-name">Makoto Yuki</p>
-          <p class="persona-role">论文</p>
+    <a href="https://github.com/N-Leon-Wesker-C" target="_blank" class="project-card">
+      <div>
+        <p class="project-tag">GPU · Triton · Kernel Optimization</p>
+        <p class="project-name">FlashAttention-2 Forward Kernel</p>
+        <p class="project-desc">Reproduced the FlashAttention-2 forward pass in Triton. Derived Online Softmax mathematical equivalence; implemented block-tiled kernel reducing attention memory from O(N²) to O(N). Applied Roofline Model to characterize compute vs. memory bottlenecks on A100.</p>
+        <div class="project-tech">
+          <span class="tech-badge">Triton</span>
+          <span class="tech-badge">CUDA</span>
+          <span class="tech-badge">Block Tiling</span>
+          <span class="tech-badge">Online Softmax</span>
+          <span class="tech-badge">A100</span>
         </div>
-      </a>
-      <a href="career/projects.html" target="_blank" class="btn-secondary">
-        <div class="persona-card pc-green">
-          <p class="persona-arcana">The Priestess</p>
-          <p class="persona-name">Yukari Takeba</p>
-          <p class="persona-role">项目</p>
-        </div>
-      </a>
-      <a href="career/technology.html" target="_blank" class="btn-secondary">
-        <div class="persona-card pc-gold">
-          <p class="persona-arcana">The Emperor</p>
-          <p class="persona-name">Akihiko Sanada</p>
-          <p class="persona-role">技术</p>
-        </div>
-      </a>
-      <a href="career/invesment.html" target="_blank" class="btn-secondary">
-        <div class="persona-card pc-teal">
-          <p class="persona-arcana">The Fortune</p>
-          <p class="persona-name">Fuuka Yamagishi</p>
-          <p class="persona-role">投资</p>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
+      </div>
+      <div class="project-arrow">→</div>
+    </a>
 
-<!-- PERSONAS / CHARACTERS -->
-<section id="life" class="personas fade-in">
-  <div class="personas-inner">
-    <div class="section-header">
-      <p class="section-label">LIFE</p>
-      <h2 class="section-title">生活</h2>
-    </div>
-    <div class="persona-list">
-      <a href="life/art.html" target="_blank" class="btn-secondary">
-        <div class="persona-card pc-red">
-          <p class="persona-arcana">The Chariot</p>
-          <p class="persona-name">Junpei Iori</p>
-          <p class="persona-role">艺术</p>
+    <a href="https://github.com/N-Leon-Wesker-C" target="_blank" class="project-card">
+      <div>
+        <p class="project-tag">Distributed Systems · Storage</p>
+        <p class="project-name">High-Performance Distributed KV Store</p>
+        <p class="project-desc">Complete distributed KV store: Raft consensus in Go with Jepsen fault-injection validation for linearizability, plus C++ LSM-Tree engine using O_DIRECT write path and mmap read path. Multi-tenant I/O isolation via cgroups v2. Write amplification ≤10×.</p>
+        <div class="project-tech">
+          <span class="tech-badge">Go</span>
+          <span class="tech-badge">C++</span>
+          <span class="tech-badge">Raft</span>
+          <span class="tech-badge">LSM-Tree</span>
+          <span class="tech-badge">Jepsen</span>
+          <span class="tech-badge">cgroups v2</span>
         </div>
-      </a>
-      <a href="life/travel.html" target="_blank" class="btn-secondary">
-        <div class="persona-card pc-gold">
-          <p class="persona-arcana">The Emperor</p>
-          <p class="persona-name">Akihiko Sanada</p>
-          <p class="persona-role">旅行</p>
+      </div>
+      <div class="project-arrow">→</div>
+    </a>
+
+    <a href="https://github.com/N-Leon-Wesker-C" target="_blank" class="project-card">
+      <div>
+        <p class="project-tag">RDMA · AVX-512 · Distributed Compute</p>
+        <p class="project-name">Heterogeneous Distributed Compute Engine</p>
+        <p class="project-desc">Multi-process distributed execution engine with RDMA result transfer (IBV_WR_RDMA_WRITE_WITH_IMM, P99 60% lower than TCP) and AVX-512 vector kernels (4× throughput over scalar baseline). DAG scheduler with O(log n) complexity. Design directly relevant to KV Cache transfer in disaggregated LLM serving.</p>
+        <div class="project-tech">
+          <span class="tech-badge">RDMA / ibverbs</span>
+          <span class="tech-badge">AVX-512</span>
+          <span class="tech-badge">C++</span>
+          <span class="tech-badge">Go</span>
+          <span class="tech-badge">CGO</span>
+          <span class="tech-badge">DAG Scheduling</span>
         </div>
-      </a>
-      <a href="life/story.html" target="_blank" class="btn-secondary">
-        <div class="persona-card pc-purple">
-          <p class="persona-arcana">The Moon</p>
-          <p class="persona-name">Shinjiro Aragaki</p>
-          <p class="persona-role">故事</p>
-        </div>
-      </a>
-      <a href="life/thoughts.html" target="_blank" class="btn-secondary">
-        <div class="persona-card pc-teal">
-          <p class="persona-arcana">The Fortune</p>
-          <p class="persona-name">Fuuka Yamagishi</p>
-          <p class="persona-role">思考</p>
-        </div>
-      </a>
-    </div>
+      </div>
+      <div class="project-arrow">→</div>
+    </a>
+
   </div>
 </section>
 
 <!-- QUOTE -->
 <section class="quote-section fade-in">
-  <div class="quote-bg"></div>
   <p class="quote-text">
-    "现在，你们要不要来一起走？<br>
-    不管是逃避，还是面对……"
+    "The question is not whether hardware should be disaggregated —<br>
+    it is how the software should follow."
   </p>
-  <p class="quote-attr">— 伊吉 · P3 Reload</p>
+  <p class="quote-attr">— Inspired by LegoOS, OSDI '18</p>
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-logo">Persona 3 Reload · SEGA</div>
-  <div class="footer-copy">© ATLUS © SEGA. All rights reserved.</div>
+<footer id="contact">
+  <div class="footer-logo">Chang Nie · Systems Research</div>
+  <div class="footer-copy">23271071@bjtu.edu.cn &nbsp;·&nbsp; Beijing Jiaotong University &nbsp;·&nbsp; Class of 2027</div>
 </footer>
 
 <script>
   const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-  }, { threshold: 0.1 });
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
   document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 </script>
 
