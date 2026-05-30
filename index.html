@@ -43,22 +43,27 @@
     font-size: 14px; letter-spacing: 3px; color: var(--text-primary);
     text-transform: uppercase; font-weight: 700;
   }
-  .nav-links { display: flex; gap: 36px; }
+  .nav-links { display: flex; gap: 24px; align-items: center; }
   .nav-links a {
     font-size: 13px; letter-spacing: 0.5px; color: var(--text-secondary);
     text-decoration: none; font-weight: 500;
     transition: color .2s;
   }
   .nav-links a:hover { color: var(--accent); }
-  .lang-switch {
-    position: fixed; top: 20px; right: 20px; z-index: 999;
-    display: flex; gap: 8px;
-  }
+  .lang-switch { display: flex; gap: 6px; margin-left: 10px; }
   .lang-btn {
-    padding: 5px 10px; font-size: 12px; border: 1px solid var(--border);
-    background: #fff; cursor: pointer; border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 12px;
+    border: 1px solid var(--border);
+    background: #fff;
+    cursor: pointer;
+    border-radius: 3px;
   }
-  .lang-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .lang-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
   .hero {
     position: relative; min-height: 100vh;
     display: flex; align-items: center; justify-content: center;
@@ -66,7 +71,7 @@
   }
   .hero-bg {
     position: absolute; inset: 0;
-    background: radial-gradient(ellipse 60% 70% at 50% 40%, rgba(0,102,204,0.05) 0%, transparent 70%),
+    background: radial-gradient(ellipse 60% 70% at 50% 40%, rgba(0,102,205,0.05) 0%, transparent 70%),
                 radial-gradient(ellipse 40% 50% at 80% 20%, rgba(74,144,217,0.04) 0%, transparent 50%);
   }
   .clock-ring {
@@ -245,7 +250,7 @@
   .fade-in.visible { opacity: 1; transform: translateY(0); }
   @media (max-width: 768px) {
     nav { padding: 14px 24px; }
-    .nav-links { gap: 16px; }
+    .nav-links { gap: 12px; }
     .about-section { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
     .section-wrap { padding: 60px 24px; }
     .project-card { grid-template-columns: 1fr; }
@@ -257,34 +262,21 @@
 </head>
 <body>
 
-<div class="lang-switch">
-  <button class="lang-btn active" onclick="switchLang('zh')">中文</button>
-  <button class="lang-btn" onclick="switchLang('en')">English</button>
-</div>
-
-<nav>
-  <div class="nav-logo">Chang Nie</div>
-  <div class="nav-links">
-    <a href="#about" data-i18n="nav_about">关于我</a>
-    <a href="#research" data-i18n="nav_research">研究方向</a>
-    <a href="#projects" data-i18n="nav_projects">项目经历</a>
-    <a href="#contact" data-i18n="nav_contact">联系方式</a>
-  </div>
-</nav>
+<div id="header-placeholder"></div>
 
 <section class="hero">
   <div class="hero-bg"></div>
   <svg class="clock-ring" viewBox="0 0 560 560" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="280" cy="280" r="260" stroke="rgba(0,102,204,0.07)" stroke-width="1"/>
-    <circle cx="280" cy="280" r="230" stroke="rgba(0,102,204,0.05)" stroke-width="0.5"/>
-    <circle cx="280" cy="280" r="195" stroke="rgba(0,102,204,0.09)" stroke-width="1"/>
-    <g stroke="rgba(0,102,204,0.25)" stroke-width="1.5">
+    <circle cx="280" cy="280" r="260" stroke="rgba(0,102,205,0.07)" stroke-width="1"/>
+    <circle cx="280" cy="280" r="230" stroke="rgba(0,102,205,0.05)" stroke-width="0.5"/>
+    <circle cx="280" cy="280" r="195" stroke="rgba(0,102,205,0.09)" stroke-width="1"/>
+    <g stroke="rgba(0,102,205,0.25)" stroke-width="1.5">
       <line x1="280" y1="22" x2="280" y2="44"/>
       <line x1="280" y1="516" x2="280" y2="538"/>
       <line x1="22" y1="280" x2="44" y2="280"/>
       <line x1="516" y1="280" x2="538" y2="280"/>
     </g>
-    <g stroke="rgba(0,102,204,0.12)" stroke-width="1">
+    <g stroke="rgba(0,102,205,0.12)" stroke-width="1">
       <line x1="414" y1="52" x2="406" y2="66"/>
       <line x1="146" y1="494" x2="154" y2="480"/>
       <line x1="52" y1="414" x2="66" y2="406"/>
@@ -294,12 +286,12 @@
       <line x1="414" y1="494" x2="406" y2="480"/>
       <line x1="146" y1="52" x2="154" y2="66"/>
     </g>
-    <rect x="276" y="14" width="8" height="8" fill="rgba(0,102,204,0.4)" transform="rotate(45 280 18)"/>
-    <rect x="276" y="538" width="8" height="8" fill="rgba(0,102,204,0.2)" transform="rotate(45 280 542)"/>
-    <rect x="14" y="276" width="8" height="8" fill="rgba(0,102,204,0.2)" transform="rotate(45 18 280)"/>
-    <rect x="538" y="276" width="8" height="8" fill="rgba(0,102,204,0.2)" transform="rotate(45 542 280)"/>
-    <circle cx="280" cy="280" r="4" fill="rgba(0,102,204,0.4)"/>
-    <circle cx="280" cy="280" r="14" stroke="rgba(0,102,204,0.15)" stroke-width="1" fill="none"/>
+    <rect x="276" y="14" width="8" height="8" fill="rgba(0,102,205,0.4)" transform="rotate(45 280 18)"/>
+    <rect x="276" y="538" width="8" height="8" fill="rgba(0,102,205,0.2)" transform="rotate(45 280 542)"/>
+    <rect x="14" y="276" width="8" height="8" fill="rgba(0,102,205,0.2)" transform="rotate(45 18 280)"/>
+    <rect x="538" y="276" width="8" height="8" fill="rgba(0,102,205,0.2)" transform="rotate(45 542 280)"/>
+    <circle cx="280" cy="280" r="4" fill="rgba(0,102,205,0.4)"/>
+    <circle cx="280" cy="280" r="14" stroke="rgba(0,102,205,0.15)" stroke-width="1" fill="none"/>
   </svg>
   <div class="hero-content">
     <p class="hero-eyebrow" data-i18n="hero_badge">北京交通大学 · 数据科学 · 2027届</p>
@@ -397,7 +389,7 @@
       </div>
       <div class="project-arrow">→</div>
     </a>
-    <a href="https://github.com/N-Leon-Wesker-C" target="_blank" class="project-card">
+    <a href="https://github.com/N-Leon-Wesker-C/distributed-kv-store" target="_blank" class="project-card">
       <div>
         <p class="project-tag" data-i18n="p3_tag">分布式系统 · 存储</p>
         <p class="project-name" data-i18n="p3_title">高性能分布式键值存储系统</p>
@@ -408,7 +400,7 @@
       </div>
       <div class="project-arrow">→</div>
     </a>
-    <a href="https://github.com/N-Leon-Wesker-C" target="_blank" class="project-card">
+    <a href="https://github.com/N-Leon-Wesker-C/dscs-engine" target="_blank" class="project-card">
       <div>
         <p class="project-tag" data-i18n="p4_tag">RDMA · AVX‑512 · 分布式计算</p>
         <p class="project-name" data-i18n="p4_title">异构分布式计算引擎</p>
@@ -422,61 +414,31 @@
   </div>
 </section>
 
+<section id="contact" class="section-wrap fade-in">
+  <div class="section-header">
+    <p class="section-label" data-i18n="contact_label">联系</p>
+    <h2 class="section-title" data-i18n="contact_title">联系方式</h2>
+  </div>
+  <div style="font-size:15px; line-height:1.9; color:var(--text-secondary);">
+    <p data-i18n="contact_intro">欢迎通过邮件或 GitHub 与我联系，我会尽快回复。</p>
+    <br>
+    <p><strong>Email:</strong> 23271071@bjtu.edu.cn</p>
+    <p><strong>GitHub:</strong> https://github.com/N-Leon-Wesker-C</p>
+    <p><strong>Linkedln:</strong> https://www.linkedin.com/in/chang-nie-2822652b6/?skipRedirect=true</p>
+  </div>
+</section>
+
 <section class="quote-section fade-in">
   <p class="quote-text" data-i18n="quote">
-    “问题不在于硬件是否应该解耦——<br>
-    而在于软件应该如何跟上。”
+    “问题不在于硬件是否应该解耦——<br>而在于软件应该如何跟上。”
   </p>
   <p class="quote-attr" data-i18n="quote_attr">灵感来自 LegoOS, OSDI '18</p>
 </section>
 
-<footer id="contact">
-  <div class="footer-logo" data-i18n="footer_logo">聂畅 · 系统研究</div>
-  <div class="footer-copy" data-i18n="footer_copy">23271071@bjtu.edu.cn · 北京交通大学 · 2027届</div>
-</footer>
+<div id="footer-placeholder"></div>
 
+<script src="lang.js"></script>
 <script>
-const translations = {
-  zh: {
-    nav_about:"关于我",nav_research:"研究方向",nav_projects:"项目经历",nav_contact:"联系方式",
-    hero_badge:"北京交通大学 · 数据科学 · 2027届",hero_tag:"系统 · AI基础设施 · 硬件解耦",
-    hero_desc:"我专注于操作系统与AI基础设施的交叉领域研究，核心方向是利用硬件解耦技术优化大规模大模型推理服务的资源效率与性能。",
-    hero_about:"了解更多",hero_cv:"个人简历",about_label:"关于我",about_role:"博士申请者 · 2027",
-    cv:"简历 PDF",bio:`我是北京交通大学数据科学专业大三本科生，预计2027年6月毕业。我的研究方向聚焦于操作系统、分布式系统与AI基础设施的交叉领域。\n我主要探索<strong>硬件解耦</strong>技术如何提升大模型推理服务的资源利用率、降低延迟，并优化端到端服务质量。\n我具备RDMA通信、分布式共识（Raft）、操作系统内核开发（RISC‑V/ByteOS）、LSM‑Tree存储引擎等实战经验，目前正在研究大模型KV缓存的GPU内存优化。\n我正在积极寻找<strong>科研实习机会与2027年博士入学机会</strong>。`,
-    research_label:"研究方向",research_title:"核心研究领域",
-    r1_title:"硬件解耦",r1_desc:"将计算、内存、存储解耦为独立网络组件，重新设计面向解耦硬件的操作系统抽象。",
-    r2_title:"大模型推理系统",r2_desc:"分离式推理架构、KV缓存管理、RDMA跨节点传输、SLO感知调度，面向高吞吐低延迟场景。",
-    r3_title:"AI负载操作系统",r3_desc:"重新设计调度、内存管理与I/O路径，让传统系统更好地支撑现代AI工作负载。",
-    r4_title:"分布式存储",r4_desc:"分布式键值存储、一致性与容错设计，是大模型缓存与持久化存储的关键支撑技术。",
-    proj_label:"项目经历",proj_title:"科研与工程项目",
-    p1_tag:"操作系统 · RISC‑V · 竞赛",p1_title:"AIOS — 面向AI任务的操作系统",p1_desc:"基于RISC‑V架构ByteOS扩展AI感知调度器，新增任务标识字段与动态优先级机制，实现无侵入式系统调用接口，在混合负载下验证效果。",
-    p2_tag:"GPU · Triton · 内核优化",p2_title:"FlashAttention‑2 前向核实现",p2_desc:"使用Triton复现FA‑2前向计算，推导在线softmax等价性，实现分块核降低内存复杂度，基于Roofline模型分析A100性能瓶颈。",
-    p3_tag:"分布式系统 · 存储",p3_title:"高性能分布式键值存储系统",p3_desc:"基于Raft实现分布式共识，C++实现LSM‑Tree存储引擎，支持O_DIRECT、mmap，使用cgroups v2实现多租户隔离，写放大≤10倍。",
-    p4_tag:"RDMA · AVX‑512 · 分布式计算",p4_title:"异构分布式计算引擎",p4_desc:"实现多进程架构，RDMA结果传输（P99延迟降低60%），AVX‑512向量化核（4倍吞吐），O(log n) DAG调度，可直接用于大模型KV缓存迁移。",
-    quote:"“问题不在于硬件是否应该解耦——<br>而在于软件应该如何跟上。”",quote_attr:"灵感来自 LegoOS, OSDI '18",
-    footer_logo:"聂畅 · 系统研究",footer_copy:"23271071@bjtu.edu.cn · 北京交通大学 · 2027届"
-  },
-  en: {
-    nav_about:"About",nav_research:"Research",nav_projects:"Projects",nav_contact:"Contact",
-    hero_badge:"Beijing Jiaotong University · Data Science · Class of 2027",hero_tag:"Systems · AI Infrastructure · Disaggregation",
-    hero_desc:"I build systems at the boundary of operating systems and AI infrastructure. My focus is how disaggregated hardware reshapes large-scale LLM serving.",
-    hero_about:"About Me",hero_cv:"CV (PDF)",about_label:"About",about_role:"PhD Applicant · 2027",
-    cv:"CV (PDF)",bio:`I am a third-year undergraduate in Data Science at Beijing Jiaotong University (expected graduation: June 2027). My research lies at the intersection of operating systems, distributed systems, and AI infrastructure.\nSpecifically, I explore how <strong>hardware disaggregation</strong> improves resource utilization and reduces inference latency for large-scale LLM serving.\nI have hands-on experience with <strong>RDMA communication, distributed consensus (Raft), OS kernel development (RISC-V/ByteOS), and LSM-tree storage engines</strong>. I am currently working on GPU memory management for LLM KV cache optimization.\nI am actively seeking <strong>research internships and PhD positions for Fall 2027</strong>.`,
-    research_label:"Research Interests",research_title:"Research Directions",
-    r1_title:"Hardware Disaggregation",r1_desc:"Decoupling CPU, memory, and storage into network-attached components. Redesigning OS abstractions for disaggregated hardware.",
-    r2_title:"LLM Inference Systems",r2_desc:"Disaggregated serving with separate Prefill/Decode stages. KV cache management, cross-node RDMA, and SLO-aware scheduling.",
-    r3_title:"OS for AI Workloads",r3_desc:"Redesigning OS scheduling, memory management, and I/O for AI inference. Bridging classical systems and modern AI infrastructure.",
-    r4_title:"Distributed Storage",r4_desc:"Consistency, fault tolerance, and I/O tradeoffs in distributed KV stores. Critical for persistent KV cache and checkpoints in LLM pipelines.",
-    proj_label:"Projects",proj_title:"Project Experience",
-    p1_tag:"OS · RISC-V · Competition",p1_title:"AIOS — AI-Aware Operating System",p1_desc:"Extended ByteOS (RISC-V) with an AI-aware scheduler. Added PCB fields for AI task identification and dynamic priority boosting; implemented custom syscalls for zero-intrusion annotation.",
-    p2_tag:"GPU · Triton · Kernel Optimization",p2_title:"FlashAttention-2 Forward Kernel",p2_desc:"Reproduced FlashAttention-2 forward pass in Triton. Derived online softmax equivalence; implemented block-tiled kernel to reduce memory from O(N²) to O(N).",
-    p3_tag:"Distributed Systems · Storage",p3_title:"High-Performance Distributed KV Store",p3_desc:"Built a distributed KV store with Raft consensus (Go, Jepsen validated) and C++ LSM-tree engine (O_DIRECT write, mmap read). Multi-tenant isolation via cgroups v2.",
-    p4_tag:"RDMA · AVX-512 · Distributed Compute",p4_title:"Heterogeneous Distributed Compute Engine",p4_desc:"Multi-process engine with RDMA result transfer (P99 60% lower than TCP) and AVX-512 kernels (4× throughput). O(log n) DAG scheduler.",
-    quote:"\"The question is not whether hardware should be disaggregated —<br>it is how the software should follow.\"",quote_attr:"— Inspired by LegoOS, OSDI '18",
-    footer_logo:"Chang Nie · Systems Research",footer_copy:"23271071@bjtu.edu.cn · Beijing Jiaotong University · Class of 2027"
-  }
-};
-
 let currentLang = "zh";
 function switchLang(lang) {
   currentLang = lang;
@@ -490,9 +452,22 @@ function switchLang(lang) {
   localStorage.setItem("lang", lang);
 }
 
-window.addEventListener("load", () => {
+function initLanguage() {
   const saved = localStorage.getItem("lang") || "zh";
   switchLang(saved);
+}
+
+async function loadComponent(id, url) {
+  const res = await fetch(url);
+  const html = await res.text();
+  document.getElementById(id).innerHTML = html;
+}
+
+Promise.all([
+  loadComponent("header.html"),
+  loadComponent("footer.html")
+]).then(() => {
+  initLanguage();
 });
 
 const obs = new IntersectionObserver(es=>{es.forEach(e=>e.isIntersecting&&e.target.classList.add("visible"));},{threshold:0.08});
