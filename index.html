@@ -464,8 +464,8 @@ async function loadComponent(id, url) {
 }
 
 Promise.all([
-  loadComponent("header.html"),
-  loadComponent("footer.html")
+  loadComponent("header-placeholder", "/components/header.html"),
+  loadComponent("footer-placeholder", "/components/footer.html")
 ]).then(() => {
   initLanguage();
 });
