@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>聂畅 · 系统与AI基础设施研究</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #ffffff;
+    --bg-secondary: #f7f8fa;
+    --bg-card: #ffffff;
+    --border: #e2e6ea;
+    --border-accent: #c8d6e5;
+    --text-primary: #0d1117;
+    --text-secondary: #4a5568;
+    --text-muted: #8896a5;
+    --accent: #0066cc;
+    --accent-light: #e8f0fe;
+    --accent-mid: #4a90d9;
+    --gold: #b8860b;
+    --code-bg: #f0f4f8;
+  }
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 64px;
+    background: rgba(255,255,255,0.95);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 14px; letter-spacing: 3px; color: var(--text-primary);
+    text-transform: uppercase; font-weight: 700;
+  }
+  .nav-links { display: flex; gap: 36px; }
+  .nav-links a {
+    font-size: 13px; letter-spacing: 0.5px; color: var(--text-secondary);
+    text-decoration: none; font-weight: 500;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .lang-switch {
+    position: fixed; top: 20px; right: 20px; z-index: 999;
+    display: flex; gap: 8px;
+  }
+  .lang-btn {
+    padding: 5px 10px; font-size: 12px; border: 1px solid var(--border);
+    background: #fff; cursor: pointer; border-radius: 4px;
+  }
+  .lang-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .hero {
+    position: relative; min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; background: var(--bg);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 70% at 50% 40%, rgba(0,102,204,0.05) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 50% at 80% 20%, rgba(74,144,217,0.04) 0%, transparent 50%);
+  }
+  .clock-ring {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -55%);
+    width: 560px; height: 560px; opacity: 0.5;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center; padding: 140px 24px 80px; max-width: 860px;
+  }
+  .hero-eyebrow {
+    font-size: 11px; letter-spacing: 6px; color: var(--accent);
+    text-transform: uppercase; margin-bottom: 28px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(48px, 8vw, 88px);
+    font-weight: 900; line-height: 0.95;
+    color: var(--text-primary);
+    letter-spacing: -1px; margin-bottom: 12px;
+  }
+  .hero-subtitle {
+    font-size: 13px; letter-spacing: 5px; color: var(--gold);
+    text-transform: uppercase; margin-bottom: 36px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .hero-copy {
+    font-size: 16px; line-height: 1.85; color: var(--text-secondary);
+    max-width: 540px; margin: 0 auto 48px; font-weight: 400;
+  }
+  .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    padding: 12px 32px; background: var(--accent); color: #fff;
+    font-size: 13px; letter-spacing: 1px; font-weight: 500;
+    text-decoration: none; display: inline-block;
+    border: 1px solid var(--accent); transition: all .2s;
+  }
+  .btn-primary:hover { background: #0052a3; border-color: #0052a3; }
+  .btn-secondary {
+    padding: 12px 32px; background: transparent; color: var(--text-secondary);
+    font-size: 13px; letter-spacing: 1px; font-weight: 500;
+    text-decoration: none; display: inline-block;
+    border: 1px solid var(--border-accent); transition: all .2s;
+  }
+  .btn-secondary:hover { color: var(--accent); border-color: var(--accent); }
+  .divider {
+    display: flex; align-items: center; gap: 16px;
+    padding: 0 64px; margin: 0 0 80px; opacity: 0.5;
+  }
+  .divider-line { flex: 1; height: 1px; background: var(--border); }
+  .divider-diamond { width: 5px; height: 5px; background: var(--accent); transform: rotate(45deg); }
+  .about-section {
+    padding: 80px 64px; max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 280px 1fr; gap: 80px; align-items: start;
+  }
+  .about-label {
+    font-size: 10px; letter-spacing: 5px; color: var(--accent);
+    text-transform: uppercase; margin-bottom: 16px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .about-name {
+    font-family: 'Cinzel', serif; font-size: 24px; font-weight: 700;
+    color: var(--text-primary); letter-spacing: 1px; margin-bottom: 6px;
+  }
+  .about-role {
+    font-size: 12px; letter-spacing: 2px; color: var(--text-muted);
+    text-transform: uppercase; margin-bottom: 28px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .about-links { display: flex; flex-direction: column; gap: 10px; }
+  .about-link {
+    font-size: 13px; color: var(--text-secondary);
+    text-decoration: none; transition: color .2s;
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .about-link:hover { color: var(--accent); }
+  .about-link::before { content: '→'; color: var(--accent); font-size: 12px; }
+  .about-bio { font-size: 15px; line-height: 1.9; color: var(--text-secondary); }
+  .about-bio p { margin-bottom: 16px; }
+  .about-bio strong { color: var(--text-primary); font-weight: 600; }
+  .section-wrap { padding: 80px 64px; max-width: 1100px; margin: 0 auto; }
+  .section-bg { background: var(--bg-secondary); }
+  .section-header { margin-bottom: 48px; }
+  .section-label {
+    font-size: 10px; letter-spacing: 5px; color: var(--accent);
+    text-transform: uppercase; margin-bottom: 10px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(22px, 3vw, 30px); font-weight: 700;
+    color: var(--text-primary); letter-spacing: 1px;
+  }
+  .features-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px; background: var(--border); border: 1px solid var(--border);
+  }
+  .feature-card {
+    padding: 32px 28px; background: var(--bg-card);
+    position: relative; overflow: hidden; transition: background .2s;
+  }
+  .feature-card:hover { background: var(--accent-light); }
+  .feature-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--accent); opacity: 0; transition: opacity .2s;
+  }
+  .feature-card:hover::before { opacity: 1; }
+  .feature-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--accent); margin-bottom: 14px;
+    letter-spacing: 2px; font-weight: 500;
+  }
+  .feature-title {
+    font-size: 14px; color: var(--text-primary);
+    font-weight: 600; margin-bottom: 10px; letter-spacing: 0.3px;
+  }
+  .feature-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.8; }
+  .project-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .project-card {
+    padding: 28px 32px; background: var(--bg-card);
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 24px; align-items: center;
+    transition: background .2s; text-decoration: none;
+  }
+  .project-card:hover { background: var(--accent-light); }
+  .project-tag {
+    font-size: 10px; letter-spacing: 3px; color: var(--accent);
+    text-transform: uppercase; margin-bottom: 6px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .project-name {
+    font-size: 16px; color: var(--text-primary);
+    font-weight: 600; margin-bottom: 8px;
+  }
+  .project-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 14px; }
+  .project-tech { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tech-badge {
+    font-size: 10px; letter-spacing: 1px; color: var(--accent);
+    background: var(--accent-light);
+    border: 1px solid rgba(0,102,204,0.2);
+    padding: 3px 10px; text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .project-arrow { font-size: 18px; color: var(--border-accent); transition: color .2s; }
+  .project-card:hover .project-arrow { color: var(--accent); }
+  .quote-section {
+    padding: 100px 64px; text-align: center;
+    background: var(--text-primary); position: relative;
+  }
+  .quote-text {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(15px, 2.5vw, 22px);
+    color: rgba(255,255,255,0.85); line-height: 1.9;
+    max-width: 680px; margin: 0 auto 20px; letter-spacing: 1px;
+  }
+  .quote-attr {
+    font-size: 11px; letter-spacing: 4px;
+    color: rgba(0,229,255,0.6);
+    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  footer {
+    padding: 32px 64px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px; background: var(--bg);
+  }
+  .footer-logo {
+    font-family: 'Cinzel', serif; font-size: 11px;
+    letter-spacing: 3px; color: var(--text-muted); text-transform: uppercase;
+  }
+  .footer-copy { font-size: 12px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+  .fade-in { opacity: 0; transform: translateY(16px); transition: opacity .5s, transform .5s; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+  @media (max-width: 768px) {
+    nav { padding: 14px 24px; }
+    .nav-links { gap: 16px; }
+    .about-section { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
+    .section-wrap { padding: 60px 24px; }
+    .project-card { grid-template-columns: 1fr; }
+    .project-arrow { display: none; }
+    .quote-section { padding: 60px 24px; }
+    footer { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="lang-switch">
+  <button class="lang-btn active" onclick="switchLang('zh')">中文</button>
+  <button class="lang-btn" onclick="switchLang('en')">English</button>
+</div>
+
+<nav>
+  <div class="nav-logo">Chang Nie</div>
+  <div class="nav-links">
+    <a href="#about" data-i18n="nav_about">关于我</a>
+    <a href="#research" data-i18n="nav_research">研究方向</a>
+    <a href="#projects" data-i18n="nav_projects">项目经历</a>
+    <a href="#contact" data-i18n="nav_contact">联系方式</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <svg class="clock-ring" viewBox="0 0 560 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="280" cy="280" r="260" stroke="rgba(0,102,204,0.07)" stroke-width="1"/>
+    <circle cx="280" cy="280" r="230" stroke="rgba(0,102,204,0.05)" stroke-width="0.5"/>
+    <circle cx="280" cy="280" r="195" stroke="rgba(0,102,204,0.09)" stroke-width="1"/>
+    <g stroke="rgba(0,102,204,0.25)" stroke-width="1.5">
+      <line x1="280" y1="22" x2="280" y2="44"/>
+      <line x1="280" y1="516" x2="280" y2="538"/>
+      <line x1="22" y1="280" x2="44" y2="280"/>
+      <line x1="516" y1="280" x2="538" y2="280"/>
+    </g>
+    <g stroke="rgba(0,102,204,0.12)" stroke-width="1">
+      <line x1="414" y1="52" x2="406" y2="66"/>
+      <line x1="146" y1="494" x2="154" y2="480"/>
+      <line x1="52" y1="414" x2="66" y2="406"/>
+      <line x1="494" y1="146" x2="480" y2="154"/>
+      <line x1="494" y1="414" x2="480" y2="406"/>
+      <line x1="52" y1="146" x2="66" y2="154"/>
+      <line x1="414" y1="494" x2="406" y2="480"/>
+      <line x1="146" y1="52" x2="154" y2="66"/>
+    </g>
+    <rect x="276" y="14" width="8" height="8" fill="rgba(0,102,204,0.4)" transform="rotate(45 280 18)"/>
+    <rect x="276" y="538" width="8" height="8" fill="rgba(0,102,204,0.2)" transform="rotate(45 280 542)"/>
+    <rect x="14" y="276" width="8" height="8" fill="rgba(0,102,204,0.2)" transform="rotate(45 18 280)"/>
+    <rect x="538" y="276" width="8" height="8" fill="rgba(0,102,204,0.2)" transform="rotate(45 542 280)"/>
+    <circle cx="280" cy="280" r="4" fill="rgba(0,102,204,0.4)"/>
+    <circle cx="280" cy="280" r="14" stroke="rgba(0,102,204,0.15)" stroke-width="1" fill="none"/>
+  </svg>
+  <div class="hero-content">
+    <p class="hero-eyebrow" data-i18n="hero_badge">北京交通大学 · 数据科学 · 2027届</p>
+    <h1 class="hero-title">聂畅</h1>
+    <p class="hero-subtitle" data-i18n="hero_tag">系统 · AI基础设施 · 硬件解耦</p>
+    <p class="hero-copy" data-i18n="hero_desc">
+      我专注于操作系统与AI基础设施的交叉领域研究，核心方向是利用硬件解耦技术优化大规模大模型推理服务的资源效率与性能。
+    </p>
+    <div class="hero-buttons">
+      <a class="btn-primary" href="#about" data-i18n="hero_about">了解更多</a>
+      <a class="btn-secondary" href="resume.pdf" target="_blank" data-i18n="hero_cv">个人简历</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+
+<section id="about" class="fade-in" style="padding-bottom:80px;">
+  <div class="about-section">
+    <div>
+      <p class="about-label" data-i18n="about_label">关于我</p>
+      <p class="about-name">聂畅</p>
+      <p class="about-role" data-i18n="about_role">博士申请者 · 2027</p>
+      <div class="about-links">
+        <a class="about-link" href="mailto:23271071@bjtu.edu.cn">23271071@bjtu.edu.cn</a>
+        <a class="about-link" href="https://github.com/N-Leon-Wesker-C" target="_blank">GitHub</a>
+        <a class="about-link" href="resume.pdf" target="_blank" data-i18n="cv">简历 PDF</a>
+      </div>
+    </div>
+    <div class="about-bio" data-i18n="bio">
+      <p>我是北京交通大学数据科学专业大三本科生，预计2027年6月毕业。我的研究方向聚焦于操作系统、分布式系统与AI基础设施的交叉领域。</p>
+      <p>我主要探索<strong>硬件解耦</strong>技术如何提升大模型推理服务的资源利用率、降低延迟，并优化端到端服务质量。</p>
+      <p>我具备RDMA通信、分布式共识（Raft）、操作系统内核开发（RISC‑V/ByteOS）、LSM‑Tree存储引擎等实战经验，目前正在研究大模型KV缓存的GPU内存优化。</p>
+      <p>我正在积极寻找<strong>科研实习机会与2027年博士入学机会</strong>。</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-bg">
+<section id="research" class="section-wrap fade-in">
+  <div class="section-header">
+    <p class="section-label" data-i18n="research_label">研究方向</p>
+    <h2 class="section-title" data-i18n="research_title">核心研究领域</h2>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <p class="feature-number">01 · 硬件</p>
+      <p class="feature-title" data-i18n="r1_title">硬件解耦</p>
+      <p class="feature-desc" data-i18n="r1_desc">将计算、内存、存储解耦为独立网络组件，重新设计面向解耦硬件的操作系统抽象。</p>
+    </div>
+    <div class="feature-card">
+      <p class="feature-number">02 · AI系统</p>
+      <p class="feature-title" data-i18n="r2_title">大模型推理系统</p>
+      <p class="feature-desc" data-i18n="r2_desc">分离式推理架构、KV缓存管理、RDMA跨节点传输、SLO感知调度，面向高吞吐低延迟场景。</p>
+    </div>
+    <div class="feature-card">
+      <p class="feature-number">03 · 操作系统</p>
+      <p class="feature-title" data-i18n="r3_title">AI负载操作系统</p>
+      <p class="feature-desc" data-i18n="r3_desc">重新设计调度、内存管理与I/O路径，让传统系统更好地支撑现代AI工作负载。</p>
+    </div>
+    <div class="feature-card">
+      <p class="feature-number">04 · 存储</p>
+      <p class="feature-title" data-i18n="r4_title">分布式存储</p>
+      <p class="feature-desc" data-i18n="r4_desc">分布式键值存储、一致性与容错设计，是大模型缓存与持久化存储的关键支撑技术。</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<section id="projects" class="section-wrap fade-in">
+  <div class="section-header">
+    <p class="section-label" data-i18n="proj_label">项目经历</p>
+    <h2 class="section-title" data-i18n="proj_title">科研与工程项目</h2>
+  </div>
+  <div class="project-list">
+    <a href="https://github.com/N-Leon-Wesker-C" target="_blank" class="project-card">
+      <div>
+        <p class="project-tag" data-i18n="p1_tag">操作系统 · RISC‑V · 竞赛</p>
+        <p class="project-name" data-i18n="p1_title">AIOS — 面向AI任务的操作系统</p>
+        <p class="project-desc" data-i18n="p1_desc">基于RISC‑V架构ByteOS扩展AI感知调度器，新增任务标识字段与动态优先级机制，实现无侵入式系统调用接口，在混合负载下验证效果。</p>
+        <div class="project-tech">
+          <span class="tech-badge">ByteOS</span><span class="tech-badge">RISC-V</span><span class="tech-badge">C</span><span class="tech-badge">调度</span><span class="tech-badge">系统调用</span>
+        </div>
+      </div>
+      <div class="project-arrow">→</div>
+    </a>
+    <a href="https://github.com/N-Leon-Wesker-C" target="_blank" class="project-card">
+      <div>
+        <p class="project-tag" data-i18n="p2_tag">GPU · Triton · 内核优化</p>
+        <p class="project-name" data-i18n="p2_title">FlashAttention‑2 前向核实现</p>
+        <p class="project-desc" data-i18n="p2_desc">使用Triton复现FA‑2前向计算，推导在线softmax等价性，实现分块核降低内存复杂度，基于Roofline模型分析A100性能瓶颈。</p>
+        <div class="project-tech">
+          <span class="tech-badge">Triton</span><span class="tech-badge">CUDA</span><span class="tech-badge">分块优化</span><span class="tech-badge">在线softmax</span><span class="tech-badge">A100</span>
+        </div>
+      </div>
+      <div class="project-arrow">→</div>
+    </a>
+    <a href="https://github.com/N-Leon-Wesker-C" target="_blank" class="project-card">
+      <div>
+        <p class="project-tag" data-i18n="p3_tag">分布式系统 · 存储</p>
+        <p class="project-name" data-i18n="p3_title">高性能分布式键值存储系统</p>
+        <p class="project-desc" data-i18n="p3_desc">基于Raft实现分布式共识，C++实现LSM‑Tree存储引擎，支持O_DIRECT、mmap，使用cgroups v2实现多租户隔离，写放大≤10倍。</p>
+        <div class="project-tech">
+          <span class="tech-badge">Go</span><span class="tech-badge">C++</span><span class="tech-badge">Raft</span><span class="tech-badge">LSM-Tree</span><span class="tech-badge">Jepsen</span><span class="tech-badge">cgroups v2</span>
+        </div>
+      </div>
+      <div class="project-arrow">→</div>
+    </a>
+    <a href="https://github.com/N-Leon-Wesker-C" target="_blank" class="project-card">
+      <div>
+        <p class="project-tag" data-i18n="p4_tag">RDMA · AVX‑512 · 分布式计算</p>
+        <p class="project-name" data-i18n="p4_title">异构分布式计算引擎</p>
+        <p class="project-desc" data-i18n="p4_desc">实现多进程架构，RDMA结果传输（P99延迟降低60%），AVX‑512向量化核（4倍吞吐），O(log n) DAG调度，可直接用于大模型KV缓存迁移。</p>
+        <div class="project-tech">
+          <span class="tech-badge">RDMA/ibverbs</span><span class="tech-badge">AVX-512</span><span class="tech-badge">C++</span><span class="tech-badge">Go</span><span class="tech-badge">CGO</span><span class="tech-badge">DAG调度</span>
+        </div>
+      </div>
+      <div class="project-arrow">→</div>
+    </a>
+  </div>
+</section>
+
+<section class="quote-section fade-in">
+  <p class="quote-text" data-i18n="quote">
+    “问题不在于硬件是否应该解耦——<br>
+    而在于软件应该如何跟上。”
+  </p>
+  <p class="quote-attr" data-i18n="quote_attr">灵感来自 LegoOS, OSDI '18</p>
+</section>
+
+<footer id="contact">
+  <div class="footer-logo" data-i18n="footer_logo">聂畅 · 系统研究</div>
+  <div class="footer-copy" data-i18n="footer_copy">23271071@bjtu.edu.cn · 北京交通大学 · 2027届</div>
+</footer>
+
+<script>
+const translations = {
+  zh: {
+    nav_about:"关于我",nav_research:"研究方向",nav_projects:"项目经历",nav_contact:"联系方式",
+    hero_badge:"北京交通大学 · 数据科学 · 2027届",hero_tag:"系统 · AI基础设施 · 硬件解耦",
+    hero_desc:"我专注于操作系统与AI基础设施的交叉领域研究，核心方向是利用硬件解耦技术优化大规模大模型推理服务的资源效率与性能。",
+    hero_about:"了解更多",hero_cv:"个人简历",about_label:"关于我",about_role:"博士申请者 · 2027",
+    cv:"简历 PDF",bio:`我是北京交通大学数据科学专业大三本科生，预计2027年6月毕业。我的研究方向聚焦于操作系统、分布式系统与AI基础设施的交叉领域。\n我主要探索<strong>硬件解耦</strong>技术如何提升大模型推理服务的资源利用率、降低延迟，并优化端到端服务质量。\n我具备RDMA通信、分布式共识（Raft）、操作系统内核开发（RISC‑V/ByteOS）、LSM‑Tree存储引擎等实战经验，目前正在研究大模型KV缓存的GPU内存优化。\n我正在积极寻找<strong>科研实习机会与2027年博士入学机会</strong>。`,
+    research_label:"研究方向",research_title:"核心研究领域",
+    r1_title:"硬件解耦",r1_desc:"将计算、内存、存储解耦为独立网络组件，重新设计面向解耦硬件的操作系统抽象。",
+    r2_title:"大模型推理系统",r2_desc:"分离式推理架构、KV缓存管理、RDMA跨节点传输、SLO感知调度，面向高吞吐低延迟场景。",
+    r3_title:"AI负载操作系统",r3_desc:"重新设计调度、内存管理与I/O路径，让传统系统更好地支撑现代AI工作负载。",
+    r4_title:"分布式存储",r4_desc:"分布式键值存储、一致性与容错设计，是大模型缓存与持久化存储的关键支撑技术。",
+    proj_label:"项目经历",proj_title:"科研与工程项目",
+    p1_tag:"操作系统 · RISC‑V · 竞赛",p1_title:"AIOS — 面向AI任务的操作系统",p1_desc:"基于RISC‑V架构ByteOS扩展AI感知调度器，新增任务标识字段与动态优先级机制，实现无侵入式系统调用接口，在混合负载下验证效果。",
+    p2_tag:"GPU · Triton · 内核优化",p2_title:"FlashAttention‑2 前向核实现",p2_desc:"使用Triton复现FA‑2前向计算，推导在线softmax等价性，实现分块核降低内存复杂度，基于Roofline模型分析A100性能瓶颈。",
+    p3_tag:"分布式系统 · 存储",p3_title:"高性能分布式键值存储系统",p3_desc:"基于Raft实现分布式共识，C++实现LSM‑Tree存储引擎，支持O_DIRECT、mmap，使用cgroups v2实现多租户隔离，写放大≤10倍。",
+    p4_tag:"RDMA · AVX‑512 · 分布式计算",p4_title:"异构分布式计算引擎",p4_desc:"实现多进程架构，RDMA结果传输（P99延迟降低60%），AVX‑512向量化核（4倍吞吐），O(log n) DAG调度，可直接用于大模型KV缓存迁移。",
+    quote:"“问题不在于硬件是否应该解耦——<br>而在于软件应该如何跟上。”",quote_attr:"灵感来自 LegoOS, OSDI '18",
+    footer_logo:"聂畅 · 系统研究",footer_copy:"23271071@bjtu.edu.cn · 北京交通大学 · 2027届"
+  },
+  en: {
+    nav_about:"About",nav_research:"Research",nav_projects:"Projects",nav_contact:"Contact",
+    hero_badge:"Beijing Jiaotong University · Data Science · Class of 2027",hero_tag:"Systems · AI Infrastructure · Disaggregation",
+    hero_desc:"I build systems at the boundary of operating systems and AI infrastructure. My focus is how disaggregated hardware reshapes large-scale LLM serving.",
+    hero_about:"About Me",hero_cv:"CV (PDF)",about_label:"About",about_role:"PhD Applicant · 2027",
+    cv:"CV (PDF)",bio:`I am a third-year undergraduate in Data Science at Beijing Jiaotong University (expected graduation: June 2027). My research lies at the intersection of operating systems, distributed systems, and AI infrastructure.\nSpecifically, I explore how <strong>hardware disaggregation</strong> improves resource utilization and reduces inference latency for large-scale LLM serving.\nI have hands-on experience with <strong>RDMA communication, distributed consensus (Raft), OS kernel development (RISC-V/ByteOS), and LSM-tree storage engines</strong>. I am currently working on GPU memory management for LLM KV cache optimization.\nI am actively seeking <strong>research internships and PhD positions for Fall 2027</strong>.`,
+    research_label:"Research Interests",research_title:"Research Directions",
+    r1_title:"Hardware Disaggregation",r1_desc:"Decoupling CPU, memory, and storage into network-attached components. Redesigning OS abstractions for disaggregated hardware.",
+    r2_title:"LLM Inference Systems",r2_desc:"Disaggregated serving with separate Prefill/Decode stages. KV cache management, cross-node RDMA, and SLO-aware scheduling.",
+    r3_title:"OS for AI Workloads",r3_desc:"Redesigning OS scheduling, memory management, and I/O for AI inference. Bridging classical systems and modern AI infrastructure.",
+    r4_title:"Distributed Storage",r4_desc:"Consistency, fault tolerance, and I/O tradeoffs in distributed KV stores. Critical for persistent KV cache and checkpoints in LLM pipelines.",
+    proj_label:"Projects",proj_title:"Project Experience",
+    p1_tag:"OS · RISC-V · Competition",p1_title:"AIOS — AI-Aware Operating System",p1_desc:"Extended ByteOS (RISC-V) with an AI-aware scheduler. Added PCB fields for AI task identification and dynamic priority boosting; implemented custom syscalls for zero-intrusion annotation.",
+    p2_tag:"GPU · Triton · Kernel Optimization",p2_title:"FlashAttention-2 Forward Kernel",p2_desc:"Reproduced FlashAttention-2 forward pass in Triton. Derived online softmax equivalence; implemented block-tiled kernel to reduce memory from O(N²) to O(N).",
+    p3_tag:"Distributed Systems · Storage",p3_title:"High-Performance Distributed KV Store",p3_desc:"Built a distributed KV store with Raft consensus (Go, Jepsen validated) and C++ LSM-tree engine (O_DIRECT write, mmap read). Multi-tenant isolation via cgroups v2.",
+    p4_tag:"RDMA · AVX-512 · Distributed Compute",p4_title:"Heterogeneous Distributed Compute Engine",p4_desc:"Multi-process engine with RDMA result transfer (P99 60% lower than TCP) and AVX-512 kernels (4× throughput). O(log n) DAG scheduler.",
+    quote:"\"The question is not whether hardware should be disaggregated —<br>it is how the software should follow.\"",quote_attr:"— Inspired by LegoOS, OSDI '18",
+    footer_logo:"Chang Nie · Systems Research",footer_copy:"23271071@bjtu.edu.cn · Beijing Jiaotong University · Class of 2027"
+  }
+};
+
+let currentLang = "zh";
+function switchLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const k = el.getAttribute("data-i18n");
+    el.innerHTML = translations[lang][k];
+  });
+  document.querySelectorAll(".lang-btn").forEach(b => b.classList.remove("active"));
+  document.querySelector(`.lang-btn[onclick="switchLang('${lang}')"]`).classList.add("active");
+  localStorage.setItem("lang", lang);
+}
+
+window.addEventListener("load", () => {
+  const saved = localStorage.getItem("lang") || "zh";
+  switchLang(saved);
+});
+
+const obs = new IntersectionObserver(es=>{es.forEach(e=>e.isIntersecting&&e.target.classList.add("visible"));},{threshold:0.08});
+document.querySelectorAll(".fade-in").forEach(i=>obs.observe(i));
+</script>
+</body>
+</html>
