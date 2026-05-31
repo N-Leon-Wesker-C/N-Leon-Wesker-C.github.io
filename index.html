@@ -414,7 +414,46 @@
   </div>
 </section>
 
-<section id="blogs" class="section-wrap fade-in">
+<!-- 博客模块 -->
+<!-- 博客模块（仅列表，无正文） -->
+<section id="blog" class="section-wrap fade-in">
+  <div class="section-header">
+    <p class="section-label" data-i18n="blog_label">Blog</p>
+    <h2 class="section-title" data-i18n="blog_title">技术博客</h2>
+  </div>
+  <div class="project-list">
+    <a href="blog1.html" class="project-card">
+      <div>
+        <p class="project-tag" data-i18n="blog1_tag">系统 · 随笔</p>
+        <p class="project-name" data-i18n="blog1_title">硬件解耦与大模型推理的思考</p>
+        <p class="project-desc" data-i18n="blog1_desc">记录我对硬件解耦、内存池化、RDMA 加速 LLM 推理的理解与实践。</p>
+        <div class="project-tech">
+          <span class="tech-badge">Systems</span>
+          <span class="tech-badge">LLM</span>
+          <span class="tech-badge">RDMA</span>
+        </div>
+      </div>
+      <div class="project-arrow">→</div>
+    </a>
+
+    <a href="blog2.html" class="project-card">
+      <div>
+        <p class="project-tag" data-i18n="blog2_tag">学习 · 笔记</p>
+        <p class="project-name" data-i18n="blog2_title">操作系统学习笔记：调度与虚拟化</p>
+        <p class="project-desc" data-i18n="blog2_desc">整理调度器、内存管理、系统虚拟化的核心知识点与实现思路。</div>
+        <div class="project-tech">
+          <span class="tech-badge">OS</span>
+          <span class="tech-badge">Scheduler</span>
+          <span class="tech-badge">Virtualization</span>
+        </div>
+      </div>
+      <div class="project-arrow">→</div>
+    </a>
+  </div>
+</section>
+
+<!-- 联系模块 -->
+<section id="contact" class="section-wrap fade-in">
   <div class="section-header">
     <p class="section-label" data-i18n="contact_label">联系</p>
     <h2 class="section-title" data-i18n="contact_title">联系方式</h2>
@@ -459,10 +498,11 @@ async function loadComponent(id, url) {
 }
 
 Promise.all([
-  loadComponent("header-placeholder", "/components/header.html"),
-  loadComponent("footer-placeholder", "/components/footer.html")
+  loadComponent("header-placeholder", "components/header.html"),
+  loadComponent("footer-placeholder", "components/footer.html")
 ]).then(() => {
   initLanguage();
+  switchLang(currentLang); // 👈 就加这一句
 });
 
 const obs = new IntersectionObserver(es=>{es.forEach(e=>e.isIntersecting&&e.target.classList.add("visible"));},{threshold:0.08});

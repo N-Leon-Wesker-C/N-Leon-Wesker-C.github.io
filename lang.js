@@ -4,7 +4,8 @@ const translations = {
     nav_about:"关于我",
     nav_research:"研究方向",
     nav_projects:"项目经历",
-    nav_contact:"联系方式",
+    nav_blogs:"博客",
+    nav_contact:"联系我",
 
     hero_badge:"北京交通大学 · 数据科学 · 2027届",
     hero_tag:"系统 · AI基础设施 · 硬件解耦",
@@ -13,7 +14,7 @@ const translations = {
     hero_cv:"个人简历",
 
     about_label:"关于我",
-    about_role:"博士申请者 · 2027",
+    about_role:"2027fall",
     cv:"简历 PDF",
     bio:`我是北京交通大学数据科学专业大三本科生，预计2027年6月毕业。我的研究方向聚焦于操作系统、分布式系统与AI基础设施的交叉领域。
 我主要探索<strong>硬件解耦</strong>技术如何提升大模型推理服务的资源利用率、降低延迟，并优化端到端服务质量。
@@ -46,6 +47,16 @@ const translations = {
     p4_title:"异构分布式计算引擎",
     p4_desc:"实现多进程架构，RDMA结果传输（P99延迟降低60%），AVX‑512向量化核（4倍吞吐），O(log n) DAG调度，可直接用于大模型KV缓存迁移。",
 
+    nav_blogs:"博客",
+    blog_label: "博客",
+    blog_title: "技术博客",
+    blog1_tag: "系统 · 随笔",
+    blog1_title: "硬件解耦与大模型推理的思考",
+    blog1_desc: "记录我对硬件解耦、内存池化、RDMA 加速 LLM 推理的理解与实践。",
+    blog2_tag: "学习 · 笔记",
+    blog2_title: "操作系统学习笔记：调度与虚拟化",
+    blog2_desc: "整理调度器、内存管理、系统虚拟化的核心知识点与实现思路。",
+
     contact_label:"联系",
     contact_title:"联系方式",
     contact_intro:"欢迎通过邮件或 GitHub 与我联系，我会尽快回复。",
@@ -60,6 +71,7 @@ const translations = {
     nav_about:"About",
     nav_research:"Research",
     nav_projects:"Projects",
+    nav_blods:"Blogs",
     nav_contact:"Contact",
 
     hero_badge:"Beijing Jiaotong University · Data Science · Class of 2027",
@@ -86,6 +98,16 @@ I am actively seeking <strong>research internships and PhD positions for Fall 20
     r3_desc:"Redesigning scheduling, memory management, and I/O for AI inference. Bridging classical systems and modern AI infrastructure.",
     r4_title:"Distributed Storage",
     r4_desc:"Consistency, fault tolerance, and I/O tradeoffs in distributed KV stores. Critical for persistent KV cache and checkpoints in LLM pipelines.",
+
+    nav_blogs:"Blogs",
+    blog_label: "Blog",
+    blog_title: "Technical Blog",
+    blog1_tag: "Systems · Notes",
+    blog1_title: "Hardware Disaggregation for LLM Inference",
+    blog1_desc: "My thoughts on hardware disaggregation, memory pooling, and RDMA for large model inference.",
+    blog2_tag: "Study · Notes",
+    blog2_title: "OS Study Notes: Scheduling & Virtualization",
+    blog2_desc: "Key concepts of OS scheduling, memory management, and virtualization.",
 
     proj_label:"Projects",
     proj_title:"Project Experience",
