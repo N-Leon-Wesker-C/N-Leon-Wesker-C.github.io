@@ -4,7 +4,7 @@ const translations = {
     nav_about:"关于我",
     nav_research:"研究方向",
     nav_projects:"项目经历",
-    nav_blogs:"博客",
+    nav_blog:"博客",
     nav_contact:"联系我",
 
     hero_badge:"北京交通大学 · 数据科学 · 2027届",
@@ -71,7 +71,7 @@ const translations = {
     nav_about:"About",
     nav_research:"Research",
     nav_projects:"Projects",
-    nav_blods:"Blogs",
+    nav_blog:"Blog",
     nav_contact:"Contact",
 
     hero_badge:"Beijing Jiaotong University · Data Science · Class of 2027",
