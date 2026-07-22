@@ -1,0 +1,114 @@
+/* ===== 共享样式 — index.html / blog1.html / blog2.html ===== */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #fefeff;
+  --bg-secondary: #f5f7fb;
+  --bg-card: #ffffff;
+  --border: #e0e6ef;
+  --border-accent: #c8d6e5;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-muted: #8a94a3;
+  --accent: #0066cc;
+  --accent-light: #e6f0ff;
+  --accent-mid: #4a90d9;
+  --gold: #b8860b;
+  --code-bg: #f7fafc;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ===== 导航栏 ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 64px;
+  background: rgba(255,255,255,0.95);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+}
+.nav-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 14px; letter-spacing: 3px; color: var(--text-primary);
+  text-transform: uppercase; font-weight: 700;
+}
+.nav-links { display: flex; gap: 24px; align-items: center; }
+.nav-links a {
+  font-size: 13px; letter-spacing: 0.5px; color: var(--text-secondary);
+  text-decoration: none; font-weight: 500;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* ===== 语言切换 ===== */
+.lang-switch { display: flex; gap: 6px; margin-left: 10px; }
+.lang-btn {
+  padding: 4px 8px;
+  font-size: 12px;
+  border: 1px solid var(--border);
+  background: #fff;
+  cursor: pointer;
+  border-radius: 3px;
+  font-family: inherit;
+}
+.lang-btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* ===== 通用区块布局 ===== */
+.section-wrap { padding: 80px 64px; max-width: 1100px; margin: 0 auto; }
+.section-header { margin-bottom: 48px; }
+.section-label {
+  font-size: 10px; letter-spacing: 5px; color: var(--accent);
+  text-transform: uppercase; margin-bottom: 10px;
+  font-family: 'JetBrains Mono', monospace;
+}
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(22px, 3vw, 30px); font-weight: 700;
+  color: var(--text-primary); letter-spacing: 1px;
+}
+
+/* ===== 渐入动画 ===== */
+.fade-in { opacity: 0; transform: translateY(16px); transition: opacity .5s, transform .5s; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== 文章正文（博客页） ===== */
+.article-content {
+  font-size: 16px;
+  line-height: 2;
+  color: var(--text-secondary);
+}
+.article-content p { margin-bottom: 20px; }
+
+/* ===== 页脚 ===== */
+footer {
+  padding: 32px 64px; border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px; background: var(--bg);
+}
+.footer-logo {
+  font-family: 'Cinzel', serif; font-size: 11px;
+  letter-spacing: 3px; color: var(--text-muted); text-transform: uppercase;
+}
+.footer-copy { font-size: 12px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+
+/* ===== 移动端响应式 ===== */
+@media (max-width: 768px) {
+  nav { padding: 14px 24px; }
+  .nav-links { gap: 12px; }
+  .section-wrap { padding: 60px 24px; }
+  footer { padding: 24px; }
+}
