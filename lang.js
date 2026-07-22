@@ -13,6 +13,8 @@ const translations = {
   nav_contact: "Contact",
 
   // ---- Hero ----
+  page_title: "Chang Nie · Systems & AI Infrastructure Research",
+  hero_name: "Chang Nie",
   hero_badge: "Beijing Jiaotong University · Data Science · Class of 2027",
   hero_tag: "Systems · AI Infrastructure · Disaggregation",
   hero_desc: "I focus on the intersection of operating systems and AI infrastructure, with a core focus on leveraging hardware disaggregation to optimize resource efficiency and performance for large-scale LLM inference serving.",
@@ -21,6 +23,7 @@ const translations = {
 
   // ---- 关于我 ----
   about_label: "About",
+  about_name: "Chang Nie",
   about_role: "PhD Applicant · Fall 2027",
   cv: "CV (PDF)",
   bio: `I am a third-year undergraduate in Data Science at Beijing Jiaotong University (expected graduation: June 2027). My research lies at the intersection of operating systems, distributed systems, and AI infrastructure.
@@ -82,6 +85,10 @@ I am actively seeking <strong>research internships and PhD positions for Fall 20
   // ---- 联系 ----
   contact_label: "Contact",
   contact_title: "Contact Me",
+  contact_linkedin: "Profile & Experience",
+  contact_cv_icon: "CV",
+  contact_cv: "Résumé",
+  contact_cv_desc: "Download PDF",
   contact_intro: "Feel free to reach out via email or GitHub. I will respond as soon as possible.",
 
   // ---- 名言 ----
