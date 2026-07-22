@@ -79,8 +79,8 @@ document.querySelectorAll(".fade-in").forEach(el => _obs.observe(el));
 
 // ===== 启动 =====
 Promise.all([
-  loadComponent("header-placeholder", "components/header.html"),
-  loadComponent("footer-placeholder", "components/footer.html")
+  loadComponent("header-placeholder", "/components/header.html"),
+  loadComponent("footer-placeholder", "/components/footer.html")
 ]).then(() => {
   fixNavLinks();
   initLang();
