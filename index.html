@@ -166,11 +166,39 @@
     text-transform: uppercase;
     font-family: 'JetBrains Mono', monospace;
   }
+  /* 联系卡片 */
+  .contact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .contact-card {
+    padding: 28px 24px; background: var(--bg-card);
+    text-decoration: none; display: flex; flex-direction: column;
+    align-items: center; text-align: center; gap: 8px;
+    transition: background .2s;
+  }
+  .contact-card:hover { background: var(--accent-light); }
+  .contact-icon {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700; font-family: 'Cinzel', serif;
+    margin-bottom: 4px;
+  }
+  .contact-card.linkedin .contact-icon { background: #0077b5; color: #fff; }
+  .contact-card.email    .contact-icon { background: var(--accent); color: #fff; }
+  .contact-card.github   .contact-icon { background: var(--text-primary); color: #fff; font-size: 20px; }
+  .contact-card.cv       .contact-icon { background: var(--bg-secondary); color: var(--accent); border: 2px solid var(--accent); font-size: 11px; letter-spacing: 1px; }
+  .contact-name {
+    font-size: 13px; font-weight: 600; color: var(--text-primary);
+    letter-spacing: 0.5px;
+  }
+  .contact-detail {
+    font-size: 11px; color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace; letter-spacing: 0.3px;
+  }
   @media (max-width: 768px) {
     .about-section { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
     .project-card { grid-template-columns: 1fr; }
     .project-arrow { display: none; }
     .quote-section { padding: 60px 24px; }
+    .contact-grid { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
 </head>
@@ -403,6 +431,31 @@
     <p class="section-label" data-i18n="contact_label">联系</p>
     <h2 class="section-title" data-i18n="contact_title">联系方式</h2>
   </div>
+  <div class="contact-grid">
+
+    <a href="https://www.linkedin.com/in/chang-nie-2822652b6/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B8O0v4jU8Rxu9kHQxuUtDwg%3D%3D" target="_blank" class="contact-card linkedin">
+      <span class="contact-icon">in</span>
+      <span class="contact-name">LinkedIn</span>
+      <span class="contact-detail" data-i18n="contact_linkedin">个人主页与职业经历</span>
+    </a>
+
+    <a href="mailto:23271071@bjtu.edu.cn" class="contact-card email">
+      <span class="contact-icon">@</span>
+      <span class="contact-name">Email</span>
+      <span class="contact-detail">23271071@bjtu.edu.cn</span>
+    </a>
+
+    <a href="https://github.com/N-Leon-Wesker-C" target="_blank" class="contact-card github">
+      <span class="contact-icon">&uarr;</span>
+      <span class="contact-name">GitHub</span>
+      <span class="contact-detail">N-Leon-Wesker-C</span>
+    </a>
+
+    <a href="resume.pdf" target="_blank" class="contact-card cv">
+      <span class="contact-icon" data-i18n="contact_cv_icon">CV</span>
+      <span class="contact-name" data-i18n="contact_cv">个人简历</span>
+      <span class="contact-detail" data-i18n="contact_cv_desc">下载 PDF</span>
+    </a>
 
   </div>
 </section>
