@@ -62,6 +62,10 @@ I am actively seeking <strong>research internships and PhD positions for Fall 20
   // ---- 博客 ----
   blog_label: "Blog",
   blog_title: "Technical Blog",
+
+  // ---- 生活博客 ----
+  life_label: "Life",
+  life_title: "Day-to-Day",
   blog1_tag: "Systems · Essay",
   blog1_title: "Thoughts on Hardware Disaggregation and LLM Inference",
   blog1_desc: "Notes on hardware disaggregation, memory pooling, and RDMA-accelerated LLM inference.",
