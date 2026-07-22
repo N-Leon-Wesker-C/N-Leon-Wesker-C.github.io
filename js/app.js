@@ -3,6 +3,16 @@
 // 切中文 → 恢复原始 HTML 内容（缓存）
 // 切英文 → 用 translations[key] 替换
 
+// 根据 app.js 被加载的路径，推算出站点根目录的相对路径
+// 例如根目录页面: js/app.js → base="" ; career/目录页面: ../js/app.js → base="../"
+var _base = "";
+(function() {
+  var s = document.currentScript;
+  if (s) {
+    _base = s.getAttribute("src").replace(/js\/app\.js$/, "");
+  }
+})();
+
 const _origin = {};
 let currentLang = "zh";
 
@@ -65,7 +75,7 @@ function fixNavLinks() {
   const isIndex = page === "" || page === "index.html";
   if (isIndex) return;
   document.querySelectorAll(".nav-links a[href^='#']").forEach(a => {
-    a.href = "index.html" + a.getAttribute("href");
+    a.href = _base + "index.html" + a.getAttribute("href");
   });
 }
 
@@ -79,8 +89,8 @@ document.querySelectorAll(".fade-in").forEach(el => _obs.observe(el));
 
 // ===== 启动 =====
 Promise.all([
-  loadComponent("header-placeholder", "/components/header.html"),
-  loadComponent("footer-placeholder", "/components/footer.html")
+  loadComponent("header-placeholder", _base + "components/header.html"),
+  loadComponent("footer-placeholder", _base + "components/footer.html")
 ]).then(() => {
   fixNavLinks();
   initLang();
