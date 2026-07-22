@@ -4,12 +4,16 @@
 // 切英文 → 用 translations[key] 替换
 
 // 根据 app.js 被加载的路径，推算出站点根目录的相对路径
-// 例如根目录页面: js/app.js → base="" ; career/目录页面: ../js/app.js → base="../"
+// 根目录页面 → base="" ; career/子目录 → base="../"
 var _base = "";
 (function() {
   var s = document.currentScript;
   if (s) {
     _base = s.getAttribute("src").replace(/js\/app\.js$/, "");
+  } else {
+    // 极端情况兜底：按当前页面路径深度反推
+    var segs = location.pathname.replace(/\/[^/]*$/, "").split("/").filter(Boolean);
+    for (var i = 0; i < segs.length; i++) _base += "../";
   }
 })();
 
