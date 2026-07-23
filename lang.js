@@ -91,6 +91,21 @@ I am actively seeking <strong>research internships and PhD positions for Fall 20
   contact_cv_desc: "Download PDF",
   contact_intro: "Feel free to reach out via email or GitHub. I will respond as soon as possible.",
 
+  // ---- 生活博客 ----
+  life_back: "← Life",
+  life_movie_tag: "Movies",
+  life_movie_title: "Movies I've Watched",
+  life_movie_desc: "Notes on memorable films and cinematic moments.",
+  life_movie_body_p1: "First paragraph goes here.",
+  life_movie_body_p2: "Second paragraph goes here.",
+  life_movie_body_p3: "Third paragraph goes here.",
+  life_think_tag: "Musings",
+  life_think_title: "July 23, 2026 · Random Thoughts",
+  life_think_desc: "Scattered thoughts and notes.",
+  life_think_body_p1: "First paragraph goes here.",
+  life_think_body_p2: "Second paragraph goes here.",
+  life_think_body_p3: "Third paragraph goes here.",
+
   // ---- 名言 ----
   quote: '"The question is not whether hardware should be disaggregated —<br>it is how the software should follow."',
   quote_attr: "— Inspired by LegoOS, OSDI '18",

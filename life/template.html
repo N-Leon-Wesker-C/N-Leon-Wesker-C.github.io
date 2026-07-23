@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>文章标题</title>
+<title data-i18n="lifeX_title">文章标题</title>
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -12,16 +12,25 @@
 
 <!-- 面包屑 -->
 <section class="section-wrap fade-in" style="margin-top: 60px; padding-bottom: 0;">
-  <a href="index.html" style="font-size:12px;color:var(--text-muted);text-decoration:none;font-family:'JetBrains Mono',monospace;">← 生活杂记</a>
+  <a href="index.html" style="font-size:12px;color:var(--text-muted);text-decoration:none;font-family:'JetBrains Mono',monospace;" data-i18n="life_back">← 生活杂记</a>
 </section>
 
 <section class="section-wrap fade-in" style="padding-top: 20px;">
   <div class="section-header">
-    <p class="section-label" style="color:var(--gold);">分类标签</p>
-    <h1 class="section-title">文章标题</h1>
+    <p class="section-label" style="color:var(--gold);" data-i18n="lifeX_tag">分类标签</p>
+    <h1 class="section-title" data-i18n="lifeX_title">文章标题</h1>
   </div>
   <div class="article-content">
-    <!-- 正文写在这里，不需要 data-i18n -->
+    <!--
+    使用说明：
+    1. 复制此文件 → 改名（如 movie.html）
+    2. 全文替换 lifeX → 具体前缀（如 life_movie）
+    3. 写中文正文
+    4. 在 lang.js 加对应的英文翻译
+    -->
+    <p data-i18n="lifeX_body_p1">第一段正文写在这里。</p>
+    <p data-i18n="lifeX_body_p2">第二段正文写在这里。</p>
+    <p data-i18n="lifeX_body_p3">第三段正文写在这里。</p>
   </div>
 </section>
 
