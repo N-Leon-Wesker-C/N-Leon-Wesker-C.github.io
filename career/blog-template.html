@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title data-i18n="blogX_title"><!-- 博文标题 --></title>
 <link rel="stylesheet" href="../css/style.css">
+<!-- KaTeX 数学公式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 </head>
 <body>
 
@@ -12,22 +14,35 @@
 
 <section class="section-wrap fade-in" style="margin-top: 60px;">
   <div class="section-header">
-    <p class="section-label" data-i18n="blogX_tag"><!-- 分类标签，如：系统 · 随笔 --></p>
-    <h1 class="section-title" data-i18n="blogX_title"><!-- 博文标题 --></h1>
+    <p class="section-label" data-i18n="blogX_tag"><!-- 分类标签 --></p>
+    <h1 class="section-title" data-i18n="blogX_title"><!-- 标题 --></h1>
   </div>
   <div class="article-content">
 
     <!--
     ╔══════════════════════════════════════════╗
-    ║  下面写正文。每段一个 <p>，加 data-i18n  ║
-    ║  键名规则：blogX_body_p1, p2, p3...    ║
-    ║  支持 <strong>加粗</strong>、<code>行内代码</code> ║
+    ║  正文支持：                             ║
+    ║  · <strong>加粗</strong>                ║
+    ║  · <code>行内代码</code>               ║
+    ║  · 图片：<img src="图片路径" alt="">   ║
+    ║  · 行内公式：$E = mc^2$               ║
+    ║  · 块级公式：$$ \int_a^b f(x)dx $$    ║
     ╚══════════════════════════════════════════╝
     -->
 
-    <p data-i18n="blogX_body_p1">第一段正文写在这里。中文是唯一数据源，英文翻译写到 lang.js。</p>
-    <p data-i18n="blogX_body_p2">第二段正文写在这里。段落之间会自动有间距。</p>
-    <p data-i18n="blogX_body_p3">第三段正文写在这里。可以一直加到 pN，需要几段就写几个。</p>
+    <p data-i18n="blogX_body_p1">第一段正文。</p>
+
+    <!-- 图片示例：
+    <p><img src="../images/example.jpg" alt="图片说明" style="max-width:100%;border-radius:4px;"></p>
+    -->
+
+    <p data-i18n="blogX_body_p2">第二段正文，可以包含行内公式 $O(n \log n)$。</p>
+
+    <!-- 块级公式示例：
+    <p>$$ \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V $$</p>
+    -->
+
+    <p data-i18n="blogX_body_p3">第三段正文。</p>
 
   </div>
 </section>
@@ -36,25 +51,10 @@
 
 <script src="../lang.js"></script>
 <script src="../js/app.js"></script>
+<!-- KaTeX 自动渲染 -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});">
+</script>
 </body>
 </html>
-
-<!--
-╔══════════════════════════════════════════════╗
-║  使用步骤：                                 ║
-║                                             ║
-║  1. 复制此文件 → blog3.html（递增编号）      ║
-║  2. 把所有 blogX 替换为 blog3（全文替换）    ║
-║  3. 写中文正文、标题、标签                   ║
-║  4. 在 lang.js 中添加对应的英文翻译：        ║
-║                                             ║
-║     blog3_tag: "分类 · 标签",               ║
-║     blog3_title: "English Title",           ║
-║     blog3_body_p1: "First paragraph...",    ║
-║     blog3_body_p2: "Second paragraph...",   ║
-║     blog3_body_p3: "Third paragraph...",    ║
-║                                             ║
-║  5. 在 index.html 博客列表加卡片入口         ║
-║     + lang.js 补 blog3_desc 英文            ║
-╚══════════════════════════════════════════════╝
--->

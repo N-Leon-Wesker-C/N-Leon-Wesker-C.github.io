@@ -92,6 +92,7 @@ nav {
   color: var(--text-secondary);
 }
 .article-content p { margin-bottom: 20px; }
+.article-content img { max-width: 100%; border-radius: 6px; display: block; margin: 28px auto; }
 
 /* ===== 页脚 ===== */
 footer {
