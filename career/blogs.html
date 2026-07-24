@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>生活 · 杂记</title>
+<title data-i18n="blog_title">技术博客</title>
 <link rel="stylesheet" href="../css/style.css">
 <style>
-  /* 归档页专属 — 金色主题 */
+  /* 归档页专属 */
   .archive-hero {
     padding: 100px 64px 60px; text-align: center;
-    background: linear-gradient(to bottom, rgba(184,134,11,0.06) 0%, transparent 100%);
+    background: linear-gradient(to bottom, var(--accent-light) 0%, transparent 100%);
   }
   .archive-eyebrow {
-    font-size: 10px; letter-spacing: 6px; color: var(--gold);
+    font-size: 10px; letter-spacing: 6px; color: var(--accent);
     text-transform: uppercase; margin-bottom: 14px;
     font-family: 'JetBrains Mono', monospace;
   }
@@ -40,9 +40,9 @@
     display: grid; grid-template-columns: 80px 1fr auto;
     gap: 20px; align-items: center; padding: 20px 12px;
     text-decoration: none; border-bottom: 1px solid var(--border);
-    border-left: 3px solid transparent; transition: background .15s, border-color .15s;
+    transition: background .15s;
   }
-  .post-card:hover { background: rgba(184,134,11,0.04); border-left-color: var(--gold); }
+  .post-card:hover { background: var(--accent-light); }
   .post-date {
     font-family: 'JetBrains Mono', monospace; font-size: 11px;
     color: var(--text-muted); text-align: center; line-height: 1.6;
@@ -50,7 +50,7 @@
   .post-date .day { display: block; font-size: 22px; font-weight: 600; color: var(--text-primary); }
   .post-info { min-width: 0; }
   .post-tag {
-    font-size: 10px; letter-spacing: 2px; color: var(--gold);
+    font-size: 10px; letter-spacing: 2px; color: var(--accent);
     text-transform: uppercase; margin-bottom: 4px;
     font-family: 'JetBrains Mono', monospace;
   }
@@ -59,14 +59,21 @@
     margin-bottom: 6px; line-height: 1.4;
   }
   .post-desc { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+  .post-tech { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+  .post-tech span {
+    font-size: 9px; letter-spacing: 1px; color: var(--accent);
+    background: var(--accent-light); border: 1px solid rgba(0,102,204,0.15);
+    padding: 2px 8px; text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+  }
   .post-arrow { font-size: 16px; color: var(--border-accent); transition: color .2s; }
-  .post-card:hover .post-arrow { color: var(--gold); }
+  .post-card:hover .post-arrow { color: var(--accent); }
   .back-link {
     display: inline-block; margin-bottom: 32px; font-size: 12px;
     color: var(--text-muted); text-decoration: none;
     font-family: 'JetBrains Mono', monospace; transition: color .2s;
   }
-  .back-link:hover { color: var(--gold); }
+  .back-link:hover { color: var(--accent); }
   @media (max-width: 768px) {
     .archive-hero { padding: 80px 24px 40px; }
     .archive-content { padding: 0 16px 60px; }
@@ -82,13 +89,13 @@
 <div id="header-placeholder"></div>
 
 <section class="archive-hero fade-in">
-  <p class="archive-eyebrow">Life</p>
-  <h1 class="archive-title">生活杂记</h1>
-  <p class="archive-count" data-i18n="life_count">共 2 篇文章</p>
+  <p class="archive-eyebrow" data-i18n="blog_label">Blog</p>
+  <h1 class="archive-title" data-i18n="blog_title">技术博客</h1>
+  <p class="archive-count" data-i18n="blog_count">共 2 篇文章</p>
 </section>
 
 <div class="archive-content fade-in">
-  <a class="back-link" href="../index.html#life" data-i18n="back_home">← 返回主页</a>
+  <a class="back-link" href="../index.html#blog" data-i18n="back_home">← 返回主页</a>
 
   <!-- 2026 年 -->
   <div class="year-divider">
@@ -96,22 +103,28 @@
     <div class="year-line"></div>
   </div>
 
-  <a href="movie.html" class="post-card">
-    <div class="post-date"><span class="day">21</span>7月</div>
+  <a href="blog1.html" class="post-card">
+    <div class="post-date"><span class="day">15</span>7月</div>
     <div class="post-info">
-      <p class="post-tag" data-i18n="life_movie_tag">电影</p>
-      <p class="post-name" data-i18n="life_movie_title">讲一讲我看过的电影吧</p>
-      <p class="post-desc" data-i18n="life_movie_desc">记录那些值得回味的光影片段。</p>
+      <p class="post-tag" data-i18n="blog1_tag">系统 · 随笔</p>
+      <p class="post-name" data-i18n="blog1_title">硬件解耦与大模型推理的思考</p>
+      <p class="post-desc" data-i18n="blog1_desc">记录我对硬件解耦、内存池化、RDMA 加速 LLM 推理的理解与实践。</p>
+      <div class="post-tech">
+        <span>Systems</span><span>LLM</span><span>RDMA</span>
+      </div>
     </div>
     <div class="post-arrow">→</div>
   </a>
 
-  <a href="think2026_7_23.html" class="post-card">
-    <div class="post-date"><span class="day">23</span>7月</div>
+  <a href="blog2.html" class="post-card">
+    <div class="post-date"><span class="day">20</span>7月</div>
     <div class="post-info">
-      <p class="post-tag" data-i18n="life_think_tag">随笔</p>
-      <p class="post-name" data-i18n="life_think_title">2026年7月23日 · 随笔</p>
-      <p class="post-desc" data-i18n="life_think_desc">一些零散的念头和记录。</p>
+      <p class="post-tag" data-i18n="blog2_tag">学习 · 笔记</p>
+      <p class="post-name" data-i18n="blog2_title">操作系统学习笔记：调度与虚拟化</p>
+      <p class="post-desc" data-i18n="blog2_desc">整理调度器、内存管理、系统虚拟化的核心知识点与实现思路。</p>
+      <div class="post-tech">
+        <span>OS</span><span>Scheduler</span><span>Virtualization</span>
+      </div>
     </div>
     <div class="post-arrow">→</div>
   </a>
